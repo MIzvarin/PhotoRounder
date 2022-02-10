@@ -11,7 +11,7 @@ import SwiftUI
 struct PhotoRounderApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SelectPhotosView()
         }
     }
 }

@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4BD2053227B4E579002A95C7 /* PhotoRounderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2053127B4E579002A95C7 /* PhotoRounderApp.swift */; };
-		4BD2053427B4E579002A95C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2053327B4E579002A95C7 /* ContentView.swift */; };
 		4BD2053627B4E57A002A95C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2053527B4E57A002A95C7 /* Assets.xcassets */; };
 		4BD2053927B4E57A002A95C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2053827B4E57A002A95C7 /* Preview Assets.xcassets */; };
 		4BD2054327B4E57B002A95C7 /* PhotoRounderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2054227B4E57B002A95C7 /* PhotoRounderTests.swift */; };
 		4BD2054D27B4E57B002A95C7 /* PhotoRounderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2054C27B4E57B002A95C7 /* PhotoRounderUITests.swift */; };
 		4BD2054F27B4E57B002A95C7 /* PhotoRounderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2054E27B4E57B002A95C7 /* PhotoRounderUITestsLaunchTests.swift */; };
+		4BD2055E27B4E5D4002A95C7 /* SelectPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2055D27B4E5D4002A95C7 /* SelectPhotosView.swift */; };
+		4BD2056027B4E950002A95C7 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2055F27B4E950002A95C7 /* Labels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,6 @@
 /* Begin PBXFileReference section */
 		4BD2052E27B4E579002A95C7 /* PhotoRounder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoRounder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD2053127B4E579002A95C7 /* PhotoRounderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRounderApp.swift; sourceTree = "<group>"; };
-		4BD2053327B4E579002A95C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4BD2053527B4E57A002A95C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BD2053827B4E57A002A95C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4BD2053E27B4E57B002A95C7 /* PhotoRounderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoRounderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +44,8 @@
 		4BD2054827B4E57B002A95C7 /* PhotoRounderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoRounderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD2054C27B4E57B002A95C7 /* PhotoRounderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRounderUITests.swift; sourceTree = "<group>"; };
 		4BD2054E27B4E57B002A95C7 /* PhotoRounderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRounderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4BD2055D27B4E5D4002A95C7 /* SelectPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotosView.swift; sourceTree = "<group>"; };
+		4BD2055F27B4E950002A95C7 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +96,8 @@
 		4BD2053027B4E579002A95C7 /* PhotoRounder */ = {
 			isa = PBXGroup;
 			children = (
-				4BD2053127B4E579002A95C7 /* PhotoRounderApp.swift */,
-				4BD2053327B4E579002A95C7 /* ContentView.swift */,
-				4BD2053527B4E57A002A95C7 /* Assets.xcassets */,
+				4BD2055C27B4E5B8002A95C7 /* Select photos */,
+				4BD2055B27B4E59A002A95C7 /* Support files */,
 				4BD2053727B4E57A002A95C7 /* Preview Content */,
 			);
 			path = PhotoRounder;
@@ -125,6 +126,24 @@
 				4BD2054E27B4E57B002A95C7 /* PhotoRounderUITestsLaunchTests.swift */,
 			);
 			path = PhotoRounderUITests;
+			sourceTree = "<group>";
+		};
+		4BD2055B27B4E59A002A95C7 /* Support files */ = {
+			isa = PBXGroup;
+			children = (
+				4BD2053127B4E579002A95C7 /* PhotoRounderApp.swift */,
+				4BD2053527B4E57A002A95C7 /* Assets.xcassets */,
+				4BD2055F27B4E950002A95C7 /* Labels.swift */,
+			);
+			path = "Support files";
+			sourceTree = "<group>";
+		};
+		4BD2055C27B4E5B8002A95C7 /* Select photos */ = {
+			isa = PBXGroup;
+			children = (
+				4BD2055D27B4E5D4002A95C7 /* SelectPhotosView.swift */,
+			);
+			path = "Select photos";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +276,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BD2053427B4E579002A95C7 /* ContentView.swift in Sources */,
 				4BD2053227B4E579002A95C7 /* PhotoRounderApp.swift in Sources */,
+				4BD2055E27B4E5D4002A95C7 /* SelectPhotosView.swift in Sources */,
+				4BD2056027B4E950002A95C7 /* Labels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
