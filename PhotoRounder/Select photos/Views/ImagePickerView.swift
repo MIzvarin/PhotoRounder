@@ -37,20 +37,23 @@ struct ImagePickerView: UIViewControllerRepresentable {
         
         func picker(_: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             for image in results {
-                image.itemProvider.loadObject(ofClass: UIImage.self) { selectedImage, error in
+                image.itemProvider.loadObject(ofClass: UIImage.self) { selectedPhoto, error in
                     if let error = error {
                         print("Error: \(error)")
                         return
                     }
-                    
-                    guard let uiImage = selectedImage as? UIImage else {
+
+                    guard let uiImage = selectedPhoto as? UIImage else {
                         print("unable to unwrap image as UIImage")
                         return
                     }
-                    
+
                     print("Success")
-                    self.parent.completion(uiImage)
+                    DispatchQueue.main.async {
+                        self.parent.completion(uiImage)
+                    }
                 }
+                
             }
             
             parent.presentationMode.wrappedValue.dismiss()

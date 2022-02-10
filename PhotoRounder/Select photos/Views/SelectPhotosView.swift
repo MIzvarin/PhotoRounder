@@ -11,6 +11,7 @@ import PhotosUI
 struct SelectPhotosView: View {
     
     //MARK: - Public properties
+    
     @ObservedObject private var viewModel = SelectPhotosViewModel()
     
     //MARK: - Private properties
@@ -22,6 +23,7 @@ struct SelectPhotosView: View {
     private let photoImage = Image(systemName: ImageNames.photo.rawValue)
     private let magicImage = Image(uiImage: UIImage(named: ImageNames.magic.rawValue)!)
     private let scissorsImage = Image(systemName: ImageNames.handmade.rawValue)
+    private let padding: CGFloat = 20
     private let pickerConfiguration: PHPickerConfiguration = {
         var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         config.filter = .images
@@ -56,14 +58,16 @@ struct SelectPhotosView: View {
                 //Select photos button
                 ActionButton(text: Labels.selectPhotos.rawValue,
                              image: photoImage) {
+                    viewModel.removeAllPhotos()
+                    
                     showPhotoLibrary = true
                 }.foregroundColor(Colors.main.getColor())
-                    .padding([.bottom], 20)
+                    .padding([.bottom], padding)
                     .sheet(isPresented: $showPhotoLibrary) {
                         
                         //Call image picker
                         ImagePickerView(configuration: pickerConfiguration) { selectedImage in
-                            viewModel.selectedPhotos.append(selectedImage)
+                            viewModel.downloadPhoto(selectedImage)
                         }
                     }
                 
