@@ -24,6 +24,7 @@ struct SelectPhotosView: View {
     private let magicImage = Image(uiImage: UIImage(named: ImageNames.magic.rawValue)!)
     private let scissorsImage = Image(systemName: ImageNames.handmade.rawValue)
     private let padding: CGFloat = 20
+    private let topPadding: CGFloat = 2
     private let pickerConfiguration: PHPickerConfiguration = {
         var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         config.filter = .images
@@ -47,13 +48,9 @@ struct SelectPhotosView: View {
     var body: some View {
         NavigationView {
             VStack() {
-                Spacer()
-                
                 //Selected photos list
                 PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                Spacer()
                 
                 //Select photos button
                 ActionButton(text: Labels.selectPhotos.rawValue,
@@ -75,7 +72,6 @@ struct SelectPhotosView: View {
                     //Manual handling button
                     ActionButton(text: Labels.handmade.rawValue,
                                  image: scissorsImage) {
-                        print("312")
                     }.foregroundColor(isActionButtomDisabled ? .gray : Colors.main.getColor())
                         .disabled(isActionButtomDisabled)
                     
@@ -84,11 +80,11 @@ struct SelectPhotosView: View {
                     //Auto handling button
                     ActionButton(text: Labels.magic.rawValue,
                                  image: magicImage) {
-                        print("123")
                     }.foregroundColor(isActionButtomDisabled ? .gray : Colors.magic.getColor())
                         .disabled(isActionButtomDisabled)
                 }
             }.navigationTitle(Labels.selectedPhotos.rawValue)
+                .padding([.top], topPadding)
         }.navigationViewStyle(.stack)
     }
     

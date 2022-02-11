@@ -9,4 +9,5 @@ enum ImageNames: String {
     case photo = "photo"
     case magic = "ВЖУХ"
     case handmade = "scissors"
+    case removeImage = "clear.fill"
 }

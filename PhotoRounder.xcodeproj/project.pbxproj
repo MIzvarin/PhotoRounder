@@ -21,6 +21,7 @@
 		4BD2056B27B50976002A95C7 /* ImageNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2056A27B50976002A95C7 /* ImageNames.swift */; };
 		4BD2056E27B53517002A95C7 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2056D27B53517002A95C7 /* ActionButton.swift */; };
 		4BD2057327B54C84002A95C7 /* SelectPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2057227B54C84002A95C7 /* SelectPhotosViewModel.swift */; };
+		4BD2057527B63F88002A95C7 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2057427B63F88002A95C7 /* Photo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		4BD2056A27B50976002A95C7 /* ImageNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNames.swift; sourceTree = "<group>"; };
 		4BD2056D27B53517002A95C7 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		4BD2057227B54C84002A95C7 /* SelectPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotosViewModel.swift; sourceTree = "<group>"; };
+		4BD2057427B63F88002A95C7 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				4BD2056D27B53517002A95C7 /* ActionButton.swift */,
+				4BD2057427B63F88002A95C7 /* Photo.swift */,
 			);
 			path = "General views";
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				4BD2056927B501F0002A95C7 /* PhotosListView.swift in Sources */,
 				4BD2056227B4F6E3002A95C7 /* Colors.swift in Sources */,
 				4BD2056627B4FB8A002A95C7 /* ImagePickerView.swift in Sources */,
+				4BD2057527B63F88002A95C7 /* Photo.swift in Sources */,
 				4BD2056B27B50976002A95C7 /* ImageNames.swift in Sources */,
 				4BD2055E27B4E5D4002A95C7 /* SelectPhotosView.swift in Sources */,
 				4BD2056027B4E950002A95C7 /* Labels.swift in Sources */,
