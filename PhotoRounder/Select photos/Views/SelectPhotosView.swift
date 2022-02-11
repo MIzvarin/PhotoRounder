@@ -20,9 +20,8 @@ struct SelectPhotosView: View {
     @State private var showPhotoLibrary = false
     
     //constant
-    private let photoImage = Image(systemName: ImageNames.photo.rawValue)
     private let magicImage = Image(uiImage: UIImage(named: ImageNames.magic.rawValue)!)
-    private let scissorsImage = Image(systemName: ImageNames.handmade.rawValue)
+    private let imageSize: CGFloat = 20
     private let padding: CGFloat = 20
     private let topPadding: CGFloat = 2
     private let pickerConfiguration: PHPickerConfiguration = {
@@ -46,46 +45,34 @@ struct SelectPhotosView: View {
     //MARK: - Body
     
     var body: some View {
-        NavigationView {
-            VStack() {
-                //Selected photos list
-                PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                //Select photos button
-                ActionButton(text: Labels.selectPhotos.rawValue,
-                             image: photoImage) {
-                    viewModel.removeAllPhotos()
+        ZStack {
+            ImagePickerView(configuration: pickerConfiguration) { selectedImage in
+                viewModel.downloadPhoto(selectedImage)
+            }
+            NavigationView {
+                VStack() {
+                    //Selected photos list
+                    PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
-                    showPhotoLibrary = true
-                }.foregroundColor(Colors.main.getColor())
-                    .padding([.bottom], padding)
-                    .sheet(isPresented: $showPhotoLibrary) {
-                        
-                        //Call image picker
-                        ImagePickerView(configuration: pickerConfiguration) { selectedImage in
-                            viewModel.downloadPhoto(selectedImage)
-                        }
-                    }
-                
-                HStack {
-                    //Manual handling button
-                    ActionButton(text: Labels.handmade.rawValue,
-                                 image: scissorsImage) {
-                    }.foregroundColor(isActionButtomDisabled ? .gray : Colors.main.getColor())
-                        .disabled(isActionButtomDisabled)
-                    
-                    Spacer()
                     
                     //Auto handling button
-                    ActionButton(text: Labels.magic.rawValue,
-                                 image: magicImage) {
-                    }.foregroundColor(isActionButtomDisabled ? .gray : Colors.magic.getColor())
-                        .disabled(isActionButtomDisabled)
-                }
-            }.navigationTitle(Labels.selectedPhotos.rawValue)
-                .padding([.top], topPadding)
-        }.navigationViewStyle(.stack)
+                    Button {
+                        print("123")
+                    } label: {
+                        HStack {
+                            magicImage
+                                .resizable()
+                                .frame(width: imageSize, height: imageSize)
+                            
+                            Text(Labels.magic.rawValue)
+                        }
+                    }.padding()
+                }.navigationTitle(Labels.selectedPhotos.rawValue)
+                    .padding([.top], topPadding)
+            }.navigationViewStyle(.stack)
+        }
+        
     }
     
     //MARK: - Private functions

@@ -19,7 +19,6 @@
 		4BD2056627B4FB8A002A95C7 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2056527B4FB8A002A95C7 /* ImagePickerView.swift */; };
 		4BD2056927B501F0002A95C7 /* PhotosListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2056827B501F0002A95C7 /* PhotosListView.swift */; };
 		4BD2056B27B50976002A95C7 /* ImageNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2056A27B50976002A95C7 /* ImageNames.swift */; };
-		4BD2056E27B53517002A95C7 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2056D27B53517002A95C7 /* ActionButton.swift */; };
 		4BD2057327B54C84002A95C7 /* SelectPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2057227B54C84002A95C7 /* SelectPhotosViewModel.swift */; };
 		4BD2057527B63F88002A95C7 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2057427B63F88002A95C7 /* Photo.swift */; };
 /* End PBXBuildFile section */
@@ -57,7 +56,6 @@
 		4BD2056527B4FB8A002A95C7 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		4BD2056827B501F0002A95C7 /* PhotosListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListView.swift; sourceTree = "<group>"; };
 		4BD2056A27B50976002A95C7 /* ImageNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNames.swift; sourceTree = "<group>"; };
-		4BD2056D27B53517002A95C7 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		4BD2057227B54C84002A95C7 /* SelectPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotosViewModel.swift; sourceTree = "<group>"; };
 		4BD2057427B63F88002A95C7 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,7 +183,6 @@
 		4BD2056C27B534F4002A95C7 /* General views */ = {
 			isa = PBXGroup;
 			children = (
-				4BD2056D27B53517002A95C7 /* ActionButton.swift */,
 				4BD2057427B63F88002A95C7 /* Photo.swift */,
 			);
 			path = "General views";
@@ -330,7 +327,6 @@
 				4BD2055E27B4E5D4002A95C7 /* SelectPhotosView.swift in Sources */,
 				4BD2056027B4E950002A95C7 /* Labels.swift in Sources */,
 				4BD2057327B54C84002A95C7 /* SelectPhotosViewModel.swift in Sources */,
-				4BD2056E27B53517002A95C7 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
