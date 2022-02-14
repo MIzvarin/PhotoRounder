@@ -26,10 +26,10 @@ struct SelectPhotosView: View {
     private let padding: CGFloat = 20
     private let topPadding: CGFloat = 2
     private let pickerConfiguration: PHPickerConfiguration = {
-        var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
-        config.filter = .images
-        config.selectionLimit = 60
-        return config
+        var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+        configuration.filter = .images
+        configuration.selectionLimit = 60
+        return configuration
     }()
     
     //computed
@@ -46,58 +46,40 @@ struct SelectPhotosView: View {
     //MARK: - Body
     
     var body: some View {
-        ZStack {
-            ImagePickerView(configuration: pickerConfiguration) { selectedImage in
-                viewModel.downloadPhoto(selectedImage)
-            }
-            NavigationView {
-                VStack() {
-                    //Selected photos list
-                    PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    //Buttons
+        NavigationView {
+            VStack() {
+                //Selected photos list
+                PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                Button {
+                    print("123")
+                } label: {
                     HStack {
-                        //Select photo button
-                        Button {
-                            showPhotoLibrary.toggle()
-                        } label: {
-                            HStack {
-                                photoImage
-                                
-                                Text(Labels.selectPhotos.rawValue)
-                                    .foregroundColor(Colors.main.getColor())
-                            }
-                        }.padding()
-                            .sheet(isPresented: $showPhotoLibrary) {
-                                ImagePickerView(configuration: pickerConfiguration) { selectedImage in
-                                    viewModel.downloadPhoto(selectedImage)
-                                }
-                            }
-
-                        Spacer()
+                        magicImage
+                            .resizable()
+                            .frame(width: imageSize, height: imageSize)
                         
-                        //Auto handling button
-                        Button {
-                            print("123")
-                        } label: {
-                            HStack {
-                                magicImage
-                                    .resizable()
-                                    .frame(width: imageSize, height: imageSize)
-                                
-                                Text(Labels.magic.rawValue)
-                                    .foregroundColor(isActionButtomDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
-                            }
-                        }.padding()
-                            .disabled(isActionButtomDisabled)
-                            
+                        Text(Labels.magic.rawValue)
+                            .foregroundColor(isActionButtomDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
                     }
-                }.navigationTitle(Labels.selectedPhotos.rawValue)
-                    .padding([.top], topPadding)
-            }.navigationViewStyle(.stack)
-        }
-        
+                }.padding()
+                    .disabled(isActionButtomDisabled)
+            }.navigationTitle(Labels.selectedPhotos.rawValue)
+                .toolbar(content: {
+                    Button {
+                        showPhotoLibrary.toggle()
+                    } label: {
+                        Image(systemName: ImageNames.plus.rawValue)
+                            .foregroundColor(.white)
+                    }.sheet(isPresented: $showPhotoLibrary) {
+                        ImagePickerView(configuration: pickerConfiguration) { selectedImage in
+                            viewModel.downloadPhoto(selectedImage)
+                        }
+                    }
+                })
+                .padding([.top], topPadding)
+        }.navigationViewStyle(.stack)
     }
     
     //MARK: - Private functions

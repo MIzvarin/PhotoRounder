@@ -14,6 +14,15 @@ struct ImagePickerView: UIViewControllerRepresentable {
     let configuration: PHPickerConfiguration
     let completion: (_ selectedImage: UIImage) -> Void
     
+    //MARK: - Init
+    
+    init(configuration: PHPickerConfiguration, completion: @escaping (_ selectedImage: UIImage) -> Void) {
+        self.configuration = configuration
+        self.completion = completion
+    }
+    
+    //MARK: - Public functions
+    
     func makeUIViewController(context: Context) -> PHPickerViewController {
         let controller = PHPickerViewController(configuration: configuration)
         controller.delegate = context.coordinator
@@ -29,11 +38,21 @@ struct ImagePickerView: UIViewControllerRepresentable {
     //MARK: - Coordinator
     
     class Coordinator: PHPickerViewControllerDelegate {
+        //MARK: - Static properites
+        
         let parent: ImagePickerView
+        
+        //MARK: - Init
         
         init(_ parent: ImagePickerView) {
             self.parent = parent
         }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        //MARK: - PHPickerViewController delegate
         
         func picker(_: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             for image in results {
@@ -53,7 +72,6 @@ struct ImagePickerView: UIViewControllerRepresentable {
                         self.parent.completion(uiImage)
                     }
                 }
-                
             }
             
             parent.presentationMode.wrappedValue.dismiss()

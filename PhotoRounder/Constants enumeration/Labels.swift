@@ -11,4 +11,5 @@ enum Labels: String {
     case handmade = "Handmade"
     case noSelectedPhotos = "No selected photos"
     case selectPhotos = "Select photos"
+    case selectAll = "Select all"
 }

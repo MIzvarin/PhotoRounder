@@ -9,7 +9,7 @@ import Combine
 import UIKit
 import Vision
 
-class SelectPhotosViewModel: ObservableObject {
+final class SelectPhotosViewModel: ObservableObject {
     //MARK: Public properties
     
     @Published var selectedPhotos: [UIImage] = []
