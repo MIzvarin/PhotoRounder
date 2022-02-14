@@ -56,11 +56,11 @@ struct SelectPhotosView: View {
                     PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
-                    
-                    
+                    //Buttons
                     HStack {
+                        //Select photo button
                         Button {
-                            print("312")
+                            showPhotoLibrary.toggle()
                         } label: {
                             HStack {
                                 photoImage
@@ -69,9 +69,15 @@ struct SelectPhotosView: View {
                                     .foregroundColor(Colors.main.getColor())
                             }
                         }.padding()
+                            .sheet(isPresented: $showPhotoLibrary) {
+                                ImagePickerView(configuration: pickerConfiguration) { selectedImage in
+                                    viewModel.downloadPhoto(selectedImage)
+                                }
+                            }
 
                         Spacer()
                         
+                        //Auto handling button
                         Button {
                             print("123")
                         } label: {
@@ -81,9 +87,11 @@ struct SelectPhotosView: View {
                                     .frame(width: imageSize, height: imageSize)
                                 
                                 Text(Labels.magic.rawValue)
-                                    .foregroundColor(Colors.magic.getColor())
+                                    .foregroundColor(isActionButtomDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
                             }
                         }.padding()
+                            .disabled(isActionButtomDisabled)
+                            
                     }
                 }.navigationTitle(Labels.selectedPhotos.rawValue)
                     .padding([.top], topPadding)

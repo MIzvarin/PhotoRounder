@@ -7,7 +7,7 @@
 
 import Combine
 import UIKit
-import SwiftUI
+import Vision
 
 class SelectPhotosViewModel: ObservableObject {
     //MARK: Public properties
@@ -22,5 +22,10 @@ class SelectPhotosViewModel: ObservableObject {
     
     func removeAllPhotos() {
         selectedPhotos.removeAll()
+    }
+    
+    //MARK: - Private functions
+    private func detectFace() {
+        
     }
 }
