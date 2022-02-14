@@ -21,6 +21,7 @@ struct SelectPhotosView: View {
     
     //constant
     private let magicImage = Image(uiImage: UIImage(named: ImageNames.magic.rawValue)!)
+    private let photoImage = Image(systemName: ImageNames.photo.rawValue)
     private let imageSize: CGFloat = 20
     private let padding: CGFloat = 20
     private let topPadding: CGFloat = 2
@@ -56,18 +57,34 @@ struct SelectPhotosView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     
-                    //Auto handling button
-                    Button {
-                        print("123")
-                    } label: {
-                        HStack {
-                            magicImage
-                                .resizable()
-                                .frame(width: imageSize, height: imageSize)
-                            
-                            Text(Labels.magic.rawValue)
-                        }
-                    }.padding()
+                    
+                    HStack {
+                        Button {
+                            print("312")
+                        } label: {
+                            HStack {
+                                photoImage
+                                
+                                Text(Labels.selectPhotos.rawValue)
+                                    .foregroundColor(Colors.main.getColor())
+                            }
+                        }.padding()
+
+                        Spacer()
+                        
+                        Button {
+                            print("123")
+                        } label: {
+                            HStack {
+                                magicImage
+                                    .resizable()
+                                    .frame(width: imageSize, height: imageSize)
+                                
+                                Text(Labels.magic.rawValue)
+                                    .foregroundColor(Colors.magic.getColor())
+                            }
+                        }.padding()
+                    }
                 }.navigationTitle(Labels.selectedPhotos.rawValue)
                     .padding([.top], topPadding)
             }.navigationViewStyle(.stack)

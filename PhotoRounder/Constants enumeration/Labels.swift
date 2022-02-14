@@ -9,4 +9,6 @@ enum Labels: String {
     case selectedPhotos = "Selected photos"
     case magic = "ВЖУХ!"
     case handmade = "Handmade"
+    case noSelectedPhotos = "No selected photos"
+    case selectPhotos = "Select photos"
 }
