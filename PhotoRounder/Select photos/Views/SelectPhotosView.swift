@@ -50,6 +50,7 @@ struct SelectPhotosView: View {
                 PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
+                //Auto handling photos button
                 Button {
                     print("123")
                 } label: {
@@ -65,6 +66,7 @@ struct SelectPhotosView: View {
                     .disabled(isActionButtomDisabled)
             }.navigationTitle(Labels.selectedPhotos.rawValue)
                 .toolbar(content: {
+                    //Add photos button
                     Button {
                         showPhotoLibrary.toggle()
                     } label: {
