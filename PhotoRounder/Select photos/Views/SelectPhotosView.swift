@@ -20,8 +20,6 @@ struct SelectPhotosView: View {
     @State private var showPhotoLibrary = false
     
     //constant
-    private let magicImage = Image(uiImage: UIImage(named: ImageNames.magic.rawValue)!)
-    private let photoImage = Image(systemName: ImageNames.photo.rawValue)
     private let imageSize: CGFloat = 20
     private let padding: CGFloat = 20
     private let topPadding: CGFloat = 2
@@ -56,7 +54,7 @@ struct SelectPhotosView: View {
                     print("123")
                 } label: {
                     HStack {
-                        magicImage
+                        Images.magic.getImage()
                             .resizable()
                             .frame(width: imageSize, height: imageSize)
                         
@@ -70,7 +68,7 @@ struct SelectPhotosView: View {
                     Button {
                         showPhotoLibrary.toggle()
                     } label: {
-                        Image(systemName: ImageNames.plus.rawValue)
+                        Images.plus.getImage()
                             .foregroundColor(.white)
                     }.sheet(isPresented: $showPhotoLibrary) {
                         ImagePickerView(configuration: pickerConfiguration) { selectedImage in

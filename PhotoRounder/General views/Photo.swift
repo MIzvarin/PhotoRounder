@@ -36,7 +36,7 @@ struct Photo: View {
             Button {
                 removeAction(image)
             } label: {
-                Image(systemName: ImageNames.removeImage.rawValue)
+                Images.removeImage.getImage()
                     .foregroundColor(.gray)
                     .padding([.top, .trailing], removeImagePadding)
             }
@@ -48,7 +48,7 @@ struct Photo: View {
 
 struct Photo_Previews: PreviewProvider {
     static var previews: some View {
-        Photo(image: UIImage(named: ImageNames.magic.rawValue)!) { _ in
+        Photo(image: UIImage(named: Images.magic.rawValue)!) { _ in
             print("123")
         }
     }
