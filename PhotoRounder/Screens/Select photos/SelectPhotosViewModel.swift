@@ -37,20 +37,16 @@ final class SelectPhotosViewModel: ObservableObject {
 	
 	private func detectFaceCompletionHandler(request: VNRequest, error: Error?) {
 		if let _ = error {
-			print("Error was detected during face recognition")
 			return
 		}
 		
 		//Must be only one face
-		guard request.results?.count == 1 else {
-			print("Too much faces")
-			return
-		}
-		
-		guard let face = request.results?.first as? VNFaceObservation else { return }
-		
+    
+        guard let faceObservation = request.results?.first as? VNFaceObservation,
+              request.results?.count == 1 else { return }
+        
 		//Face coordinates in percent
 		
-		print(face)
+		print(faceObservation)
 	}
 }

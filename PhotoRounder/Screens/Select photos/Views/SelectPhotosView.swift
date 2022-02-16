@@ -16,22 +16,14 @@ struct SelectPhotosView: View {
     
     //MARK: - Private properties
     
-    //State
     @State private var showPhotoLibrary = false
-    
-    //constant
-    private let imageSize: CGFloat = 20
-    private let padding: CGFloat = 20
-    private let topPadding: CGFloat = 2
     private let pickerConfiguration: PHPickerConfiguration = {
         var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         configuration.filter = .images
         configuration.selectionLimit = 60
         return configuration
     }()
-    
-    //computed
-    private var isActionButtomDisabled: Bool {
+    private var isActionButtonDisabled: Bool {
         viewModel.selectedPhotos.isEmpty
     }
     
@@ -52,18 +44,18 @@ struct SelectPhotosView: View {
                 
                 //Auto handling photos button
                 Button {
-                    print("123")
+                    
                 } label: {
                     HStack {
                         Images.magic.getImage()
                             .resizable()
-                            .frame(width: imageSize, height: imageSize)
+                            .frame(width: Constants.imageSize, height: Constants.imageSize)
                         
                         Text(Labels.magic.rawValue)
-                            .foregroundColor(isActionButtomDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
+                            .foregroundColor(isActionButtonDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
                     }
                 }.padding()
-                    .disabled(isActionButtomDisabled)
+                    .disabled(isActionButtonDisabled)
             }.navigationTitle(Labels.selectedPhotos.rawValue)
                 .toolbar(content: {
                     //Add photos button
@@ -78,7 +70,7 @@ struct SelectPhotosView: View {
                         }
                     }
                 })
-                .padding([.top], topPadding)
+                .padding([.top], Constants.padding)
         }.navigationViewStyle(.stack)
     }
     
@@ -95,11 +87,19 @@ struct SelectPhotosView: View {
     }
 }
 
-//MARK: - Preview
+    //MARK: - Constant enumeration
+
+enum Constants {
+    fileprivate static let imageSize: CGFloat = 20
+    fileprivate static let padding: CGFloat = 20
+    fileprivate static let previewDeviceName: PreviewDevice = "iPhone 13 Pro"
+}
+
+    //MARK: - Preview
 
 struct SelectPhotosView_Previews: PreviewProvider {
     static var previews: some View {
         SelectPhotosView()
-            .previewDevice("iPhone 13 Pro")
+            .previewDevice(Constants.previewDeviceName)
     }
 }

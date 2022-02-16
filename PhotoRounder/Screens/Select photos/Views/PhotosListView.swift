@@ -21,7 +21,7 @@ struct PhotosListView: View {
     
     var body: some View {
         VStack {
-            let columnCount = selectedPhotos.count < 3  ? selectedPhotos.count : 3
+            let columnCount = calculateColumnsNumber()
             
             if selectedPhotos.isEmpty {
                 Text(Labels.noSelectedPhotos.rawValue)
@@ -46,10 +46,10 @@ struct PhotosListView: View {
             }
         }
     }
+    
+    //MARK: - Private functions
+    
+    private func calculateColumnsNumber() -> Int {
+        selectedPhotos.count < 3  ? selectedPhotos.count : 3
+    }
 }
-
-//struct PhotosListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PhotosListView()
-//    }
-//}

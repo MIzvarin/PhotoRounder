@@ -44,12 +44,10 @@ struct Photo: View {
     }
 }
 
-//MARK: - Preview
+    //MARK: - Preview
 
 struct Photo_Previews: PreviewProvider {
     static var previews: some View {
-        Photo(image: UIImage(named: Images.magic.rawValue)!) { _ in
-            print("123")
-        }
+        Photo(image: UIImage(named: Images.magic.rawValue)!) { _ in }
     }
 }
