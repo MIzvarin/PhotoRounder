@@ -111,20 +111,20 @@
 			isa = PBXGroup;
 			children = (
 				FA49950027BCD98E00D752E5 /* Screens */,
-				4BD2056C27B534F4002A95C7 /* General views */,
-				4BD2056327B4F942002A95C7 /* Constants enumeration */,
-				4BD2055B27B4E59A002A95C7 /* Support files */,
-				4BD2053727B4E57A002A95C7 /* Preview Content */,
+				4BD2056C27B534F4002A95C7 /* GeneralViews */,
+				4BD2056327B4F942002A95C7 /* ConstantsEnumeration */,
+				4BD2055B27B4E59A002A95C7 /* SupportFiles */,
+				4BD2053727B4E57A002A95C7 /* PreviewContent */,
 			);
 			path = PhotoRounder;
 			sourceTree = "<group>";
 		};
-		4BD2053727B4E57A002A95C7 /* Preview Content */ = {
+		4BD2053727B4E57A002A95C7 /* PreviewContent */ = {
 			isa = PBXGroup;
 			children = (
 				4BD2053827B4E57A002A95C7 /* Preview Assets.xcassets */,
 			);
-			path = "Preview Content";
+			path = PreviewContent;
 			sourceTree = "<group>";
 		};
 		4BD2054127B4E57B002A95C7 /* PhotoRounderTests */ = {
@@ -144,65 +144,65 @@
 			path = PhotoRounderUITests;
 			sourceTree = "<group>";
 		};
-		4BD2055B27B4E59A002A95C7 /* Support files */ = {
+		4BD2055B27B4E59A002A95C7 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
 				4BD2053127B4E579002A95C7 /* PhotoRounderApp.swift */,
 				4BD2053527B4E57A002A95C7 /* Assets.xcassets */,
 			);
-			path = "Support files";
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
-		4BD2055C27B4E5B8002A95C7 /* Select photos */ = {
+		4BD2055C27B4E5B8002A95C7 /* SelectPhotos */ = {
 			isa = PBXGroup;
 			children = (
 				4BD2056727B501C7002A95C7 /* Views */,
 				4BD2057227B54C84002A95C7 /* SelectPhotosViewModel.swift */,
 			);
-			path = "Select photos";
+			path = SelectPhotos;
 			sourceTree = "<group>";
 		};
-		4BD2056327B4F942002A95C7 /* Constants enumeration */ = {
+		4BD2056327B4F942002A95C7 /* ConstantsEnumeration */ = {
 			isa = PBXGroup;
 			children = (
 				4BD2056127B4F6E3002A95C7 /* Colors.swift */,
 				4BD2055F27B4E950002A95C7 /* Labels.swift */,
 				4BD2056A27B50976002A95C7 /* ImageNames.swift */,
 			);
-			path = "Constants enumeration";
+			path = ConstantsEnumeration;
 			sourceTree = "<group>";
 		};
 		4BD2056727B501C7002A95C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FA4994FF27BCD95900D752E5 /* Image picker view */,
+				FA4994FF27BCD95900D752E5 /* ImagePickerView */,
 				4BD2055D27B4E5D4002A95C7 /* SelectPhotosView.swift */,
 				4BD2056827B501F0002A95C7 /* PhotosListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		4BD2056C27B534F4002A95C7 /* General views */ = {
+		4BD2056C27B534F4002A95C7 /* GeneralViews */ = {
 			isa = PBXGroup;
 			children = (
 				4BD2057427B63F88002A95C7 /* Photo.swift */,
 			);
-			path = "General views";
+			path = GeneralViews;
 			sourceTree = "<group>";
 		};
-		FA4994FF27BCD95900D752E5 /* Image picker view */ = {
+		FA4994FF27BCD95900D752E5 /* ImagePickerView */ = {
 			isa = PBXGroup;
 			children = (
 				FA4994FD27BCD60600D752E5 /* ImagePickerView + Coordinator.swift */,
 				4BD2056527B4FB8A002A95C7 /* ImagePickerView.swift */,
 			);
-			path = "Image picker view";
+			path = ImagePickerView;
 			sourceTree = "<group>";
 		};
 		FA49950027BCD98E00D752E5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				4BD2055C27B4E5B8002A95C7 /* Select photos */,
+				4BD2055C27B4E5B8002A95C7 /* SelectPhotos */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
