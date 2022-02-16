@@ -10,12 +10,12 @@ import UIKit
 import Vision
 
 final class SelectPhotosViewModel: ObservableObject {
-    //MARK: Public properties
+    // MARK: Public properties
     
     @Published var selectedPhotos: [UIImage] = []
     @Published var croppedImages: [UIImage] = []
 
-    //MARK: - Public functions
+    // MARK: - Public functions
     
     func downloadPhoto(_ photo: UIImage) {
         selectedPhotos.append(photo)
@@ -25,7 +25,7 @@ final class SelectPhotosViewModel: ObservableObject {
         selectedPhotos.removeAll()
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func detectFace(on image: UIImage)  {
 		guard let cgImage = image.cgImage else { return }
 		
@@ -40,12 +40,12 @@ final class SelectPhotosViewModel: ObservableObject {
 			return
 		}
 		
-		//Must be only one face
+		// Must be only one face
     
         guard let faceObservation = request.results?.first as? VNFaceObservation,
               request.results?.count == 1 else { return }
         
-		//Face coordinates in percent
+		// Face coordinates in percent
 		
 		print(faceObservation)
 	}

@@ -9,23 +9,23 @@ import SwiftUI
 
 struct Photo: View {
     
-    //MARK: - Private properties
+    // MARK: - Private properties
     
     private let removeImagePadding: CGFloat = 5
     
-    //MARK: - Public properties
+    // MARK: - Public properties
     
     let image: UIImage
     let removeAction: (UIImage) -> Void
     
-    //MARK: Init
+    // MARK: Init
     
     init(image: UIImage, removeAction: @escaping (UIImage) -> Void) {
         self.image = image
         self.removeAction = removeAction
     }
     
-    //MARK: - Body
+    // MARK: - Body
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -44,7 +44,7 @@ struct Photo: View {
     }
 }
 
-    //MARK: - Preview
+// MARK: - Preview
 
 struct Photo_Previews: PreviewProvider {
     static var previews: some View {

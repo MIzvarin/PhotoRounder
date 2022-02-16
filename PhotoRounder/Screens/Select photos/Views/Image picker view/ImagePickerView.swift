@@ -14,14 +14,14 @@ struct ImagePickerView: UIViewControllerRepresentable {
     let configuration: PHPickerConfiguration
     let completion: (_ selectedImage: UIImage) -> Void
     
-    //MARK: - Init
+    // MARK: - Init
     
     init(configuration: PHPickerConfiguration, completion: @escaping (_ selectedImage: UIImage) -> Void) {
         self.configuration = configuration
         self.completion = completion
     }
     
-    //MARK: - Public functions
+    // MARK: - Public functions
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
         let controller = PHPickerViewController(configuration: configuration)

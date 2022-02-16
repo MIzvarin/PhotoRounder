@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct PhotosListView: View {
-    //MARK: - Private properties
+    // MARK: - Private properties
     
     private let spacing: CGFloat = 2
     
-    //MARK: - Public properties
+    // MARK: - Public properties
     
-    ///binding
     @Binding var selectedPhotos: [UIImage]
     
-    //MARK: - Body
+    // MARK: - Body
     
     var body: some View {
         VStack {
@@ -32,7 +31,7 @@ struct PhotosListView: View {
                         ForEach(selectedPhotos, id: \.self) { photo in
                             Photo(image: photo, removeAction: { image in
                                 guard let index = selectedPhotos.firstIndex(of: image) else { return }
-                                //Removal animation
+                                // Removal animation
                                 withAnimation(.easeInOut(duration: 0.5)) {
                                     _ = selectedPhotos.remove(at: index)
                                 }
@@ -47,7 +46,7 @@ struct PhotosListView: View {
         }
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     
     private func calculateColumnsNumber() -> Int {
         selectedPhotos.count < 3  ? selectedPhotos.count : 3

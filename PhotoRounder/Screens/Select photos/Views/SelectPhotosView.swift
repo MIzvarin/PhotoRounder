@@ -10,11 +10,11 @@ import PhotosUI
 
 struct SelectPhotosView: View {
     
-    //MARK: - Public properties
+    // MARK: - Public properties
     
     @ObservedObject private var viewModel = SelectPhotosViewModel()
     
-    //MARK: - Private properties
+    // MARK: - Private properties
     
     @State private var showPhotoLibrary = false
     private let pickerConfiguration: PHPickerConfiguration = {
@@ -27,22 +27,22 @@ struct SelectPhotosView: View {
         viewModel.selectedPhotos.isEmpty
     }
     
-    //MARK: - Init
+    // MARK: - Init
     
     init() {
         setupNavBarAppearance()
     }
     
-    //MARK: - Body
+    // MARK: - Body
     
     var body: some View {
         NavigationView {
             VStack() {
-                //Selected photos list
+                // Selected photos list
                 PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
-                //Auto handling photos button
+                // Auto handling photos button
                 Button {
                     
                 } label: {
@@ -58,7 +58,7 @@ struct SelectPhotosView: View {
                     .disabled(isActionButtonDisabled)
             }.navigationTitle(Labels.selectedPhotos.rawValue)
                 .toolbar(content: {
-                    //Add photos button
+                    // Add photos button
                     Button {
                         showPhotoLibrary.toggle()
                     } label: {
@@ -74,7 +74,7 @@ struct SelectPhotosView: View {
         }.navigationViewStyle(.stack)
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     
     private func setupNavBarAppearance() {
         let navBarAppearance = UINavigationBarAppearance()
@@ -87,7 +87,7 @@ struct SelectPhotosView: View {
     }
 }
 
-    //MARK: - Constant enumeration
+    // MARK: - Constant enumeration
 
 enum Constants {
     fileprivate static let imageSize: CGFloat = 20
@@ -95,7 +95,7 @@ enum Constants {
     fileprivate static let previewDeviceName: PreviewDevice = "iPhone 13 Pro"
 }
 
-    //MARK: - Preview
+// MARK: - Preview
 
 struct SelectPhotosView_Previews: PreviewProvider {
     static var previews: some View {

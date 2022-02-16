@@ -9,14 +9,14 @@ import PhotosUI
 
 extension ImagePickerView {
     
-    //MARK: - Coordinator
+    // MARK: - Coordinator
     
     class Coordinator: PHPickerViewControllerDelegate {
-        //MARK: - Static properties
+        // MARK: - Static properties
         
         let parent: ImagePickerView
         
-        //MARK: - Init
+        // MARK: - Init
         
         init(_ parent: ImagePickerView) {
             self.parent = parent
@@ -26,7 +26,7 @@ extension ImagePickerView {
             fatalError("init(coder:) has not been implemented")
         }
         
-        //MARK: - PHPickerViewController delegate
+        // MARK: - PHPickerViewController delegate
         
         func picker(_: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             for image in results {
