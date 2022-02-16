@@ -87,19 +87,21 @@ struct SelectPhotosView: View {
     }
 }
 
-    // MARK: - Constant enumeration
-
-enum Constants {
-    fileprivate static let imageSize: CGFloat = 20
-    fileprivate static let padding: CGFloat = 20
-    fileprivate static let previewDeviceName: PreviewDevice = "iPhone 13 Pro"
-}
-
 // MARK: - Preview
 
 struct SelectPhotosView_Previews: PreviewProvider {
     static var previews: some View {
         SelectPhotosView()
-            .previewDevice(Constants.previewDeviceName)
+    }
+}
+
+// MARK: - Extensions
+
+fileprivate extension SelectPhotosView {
+    // MARK: - Constant enumeration
+
+    enum Constants {
+        fileprivate static let imageSize: CGFloat = 20
+        fileprivate static let padding: CGFloat = 20
     }
 }

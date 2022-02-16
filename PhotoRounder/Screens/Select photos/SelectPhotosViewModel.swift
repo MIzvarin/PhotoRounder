@@ -14,7 +14,7 @@ final class SelectPhotosViewModel: ObservableObject {
     
     @Published var selectedPhotos: [UIImage] = []
     @Published var croppedImages: [UIImage] = []
-
+    
     // MARK: - Public functions
     
     func downloadPhoto(_ photo: UIImage) {
@@ -27,26 +27,30 @@ final class SelectPhotosViewModel: ObservableObject {
     
     // MARK: - Private functions
     private func detectFace(on image: UIImage)  {
-		guard let cgImage = image.cgImage else { return }
-		
-		let request = VNDetectFaceRectanglesRequest(completionHandler: detectFaceCompletionHandler(request:error:))
-		let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-		
-		try? handler.perform([request])
-    }
-	
-	private func detectFaceCompletionHandler(request: VNRequest, error: Error?) {
-		if let _ = error {
-			return
-		}
-		
-		// Must be only one face
-    
-        guard let faceObservation = request.results?.first as? VNFaceObservation,
-              request.results?.count == 1 else { return }
+        guard let cgImage = image.cgImage else { return }
         
-		// Face coordinates in percent
-		
-		print(faceObservation)
-	}
+        let request = VNDetectFaceRectanglesRequest(completionHandler: detectFaceCompletionHandler(request:error:))
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        
+        try? handler.perform([request])
+    }
+    
+    private func detectFaceCompletionHandler(request: VNRequest, error: Error?) {
+        if let _ = error {
+            return
+        }
+        
+        // Must be only one face
+        
+        guard
+            let faceObservation = request.results?.first as? VNFaceObservation,
+            request.results?.count == 1
+        else {
+            return
+        }
+        
+        // Face coordinates in percent
+        
+        print(faceObservation)
+    }
 }
