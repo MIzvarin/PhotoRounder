@@ -44,7 +44,7 @@ struct SelectPhotosView: View {
                 
                 // Auto handling photos button
                 Button {
-                    
+					viewModel.detectFace(on: viewModel.selectedPhotos.first!)
                 } label: {
                     HStack {
                         Images.magic.getImage()
@@ -70,7 +70,7 @@ struct SelectPhotosView: View {
                         }
                     }
                 })
-                .padding([.top], Constants.padding)
+                .padding([.top], Constants.topPadding)
         }.navigationViewStyle(.stack)
     }
     
@@ -102,6 +102,6 @@ fileprivate extension SelectPhotosView {
 
     enum Constants {
         fileprivate static let imageSize: CGFloat = 20
-        fileprivate static let padding: CGFloat = 20
+        fileprivate static let topPadding: CGFloat = 2
     }
 }

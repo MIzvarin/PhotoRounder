@@ -26,7 +26,7 @@ final class SelectPhotosViewModel: ObservableObject {
     }
     
     // MARK: - Private functions
-    private func detectFace(on image: UIImage)  {
+    func detectFace(on image: UIImage)  {
         guard let cgImage = image.cgImage else { return }
         
         let request = VNDetectFaceRectanglesRequest(completionHandler: detectFaceCompletionHandler(request:error:))
@@ -36,7 +36,8 @@ final class SelectPhotosViewModel: ObservableObject {
     }
     
     private func detectFaceCompletionHandler(request: VNRequest, error: Error?) {
-        if let _ = error {
+        if let error = error {
+			print("Error: \(error)")
             return
         }
         
@@ -51,6 +52,6 @@ final class SelectPhotosViewModel: ObservableObject {
         
         // Face coordinates in percent
         
-        print(faceObservation)
+        print("FaceObservation: \(faceObservation)")
     }
 }
