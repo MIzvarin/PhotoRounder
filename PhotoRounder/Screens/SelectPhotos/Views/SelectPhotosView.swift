@@ -20,7 +20,7 @@ struct SelectPhotosView: View {
     private let pickerConfiguration: PHPickerConfiguration = {
         var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         configuration.filter = .images
-        configuration.selectionLimit = 60
+		configuration.selectionLimit = Constants.selectionLimit
         return configuration
     }()
     private var isActionButtonDisabled: Bool {
@@ -40,11 +40,14 @@ struct SelectPhotosView: View {
             VStack() {
                 // Selected photos list
                 PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: 300, maxHeight: 300)
+				
+				PhotosListView(selectedPhotos: $viewModel.croppedImages)
+					.frame(width: 300, height: 300)
                 
                 // Auto handling photos button
                 Button {
-					viewModel.detectFace(on: viewModel.selectedPhotos.first!)
+					viewModel.imageHandler(on: viewModel.selectedPhotos.first!)
                 } label: {
                     HStack {
                         Images.magic.getImage()
@@ -103,5 +106,6 @@ fileprivate extension SelectPhotosView {
     enum Constants {
         fileprivate static let imageSize: CGFloat = 20
         fileprivate static let topPadding: CGFloat = 2
+		fileprivate static let selectionLimit = 60
     }
 }
