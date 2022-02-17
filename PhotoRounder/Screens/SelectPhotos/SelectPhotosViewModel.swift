@@ -57,34 +57,35 @@ final class SelectPhotosViewModel: ObservableObject {
 	}
 	
 	private func croppImage(sourceImage: UIImage, faceRect: CGRect) -> UIImage {
-		let originSize = sourceImage.size
-		let faceWidth = originSize.width * faceRect.size.width
-		let faceHeight = originSize.height * faceRect.size.height
-		let dfgd = CGRect(origin: .zero, size: CGSize(width: faceWidth, height: faceHeight))
-		let renderer = UIGraphicsImageRenderer(size: originSize)
+		let square = getSquareForCropping(sourceImage: sourceImage, faceRect: faceRect)
 		
+		let renderer = UIGraphicsImageRenderer(size: square.size)
+
 		let result = renderer.image { _ in
-			let breadthSize = dfgd.size
-			let breadthRect = CGRect(origin: .zero, size: breadthSize)
-			let origin = CGPoint(x: originSize.width * faceRect.origin.x, y: originSize.height * (1 - faceRect.origin.y))
-			
-			// ================================
-			
+			let breadthRect = CGRect(origin: .zero, size: square.size)
 			let circle = UIBezierPath(ovalIn: breadthRect)
+			
 			circle.addClip()
-			if let cgImage = sourceImage.cgImage?.cropping(to: CGRect(origin: origin, size: breadthSize)) {
-				UIImage(cgImage: cgImage, scale: sourceImage.scale, orientation: sourceImage.imageOrientation).draw(in: dfgd)
+			
+			if let cgImage = sourceImage.cgImage?.cropping(to: CGRect(origin: .zero, size: breadthRect.size)) {
+				UIImage(cgImage: cgImage, scale: sourceImage.scale, orientation: sourceImage.imageOrientation).draw(in: breadthRect)
 			}
 		}
+		
 		return result
 	}
 	
-	private func getSquareForCropping(faceRect: CGRect) -> CGRect {
+	private func getSquareForCropping(sourceImage: UIImage,faceRect: CGRect) -> CGRect {
 		let center = CGPoint(x: faceRect.midX, y: faceRect.midY)
+		var sideSize: CGFloat
 		let smallerDistanceByX = min((1 - faceRect.midX), faceRect.midX)
 		let smallerDistanceByY = min((1 - faceRect.midY), faceRect.midY)
-		let smallerDistance = min(smallerDistanceByY, smallerDistanceByX)
-		let sideSize = smallerDistance * 2
+		
+		if smallerDistanceByX < smallerDistanceByY {
+			sideSize = sourceImage.size.width * smallerDistanceByX * 2
+		} else {
+			sideSize = sourceImage.size.height * smallerDistanceByY * 2
+		}
 		
 		return CGRect(center: center, sideSize: sideSize)
 	}
