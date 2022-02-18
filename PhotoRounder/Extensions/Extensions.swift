@@ -2,18 +2,17 @@
 //  Extensions.swift
 //  PhotoRounder
 //
-//  Created by Максим Изварин on 17.02.2022.
+//  Created by Максим Изварин on 18.02.2022.
 //
 
 import CoreGraphics
 
-//MARK: - CGRect
-
 extension CGRect {
-	
-	// Init for creation square CGRect using center point and side size
-	
-	init(center: CGPoint, sideSize: CGFloat) {
-		self.init(x: center.x - sideSize / 2, y: center.y - sideSize / 2, width: sideSize, height: sideSize)
+	/** Creates a rectangle with the given center and dimensions
+	- parameter center: The center of the new rectangle
+	- parameter size: The dimensions of the new rectangle
+	 */
+	init(center: CGPoint, size: CGSize) {
+		self.init(x: center.x - size.width / 2, y: center.y - size.height / 2, width: size.width, height: size.height)
 	}
 }

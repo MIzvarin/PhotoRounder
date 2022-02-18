@@ -40,14 +40,11 @@ struct SelectPhotosView: View {
             VStack() {
                 // Selected photos list
                 PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
-                    .frame(maxWidth: 300, maxHeight: 300)
-				
-				PhotosListView(selectedPhotos: $viewModel.croppedImages)
-					.frame(width: 300, height: 300)
+					.frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 // Auto handling photos button
                 Button {
-					viewModel.imageHandler(on: viewModel.selectedPhotos.first!)
+					
                 } label: {
                     HStack {
                         Images.magic.getImage()

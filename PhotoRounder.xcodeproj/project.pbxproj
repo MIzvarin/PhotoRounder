@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4BB2466B27BE73C4009F3C16 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2466A27BE73C4009F3C16 /* Extensions.swift */; };
+		4BAC52BA27BFB888006571E8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAC52B927BFB888006571E8 /* Extensions.swift */; };
 		4BD2053227B4E579002A95C7 /* PhotoRounderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2053127B4E579002A95C7 /* PhotoRounderApp.swift */; };
 		4BD2053627B4E57A002A95C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2053527B4E57A002A95C7 /* Assets.xcassets */; };
 		4BD2053927B4E57A002A95C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2053827B4E57A002A95C7 /* Preview Assets.xcassets */; };
@@ -43,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4BB2466A27BE73C4009F3C16 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4BAC52B927BFB888006571E8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4BD2052E27B4E579002A95C7 /* PhotoRounder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoRounder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD2053127B4E579002A95C7 /* PhotoRounderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRounderApp.swift; sourceTree = "<group>"; };
 		4BD2053527B4E57A002A95C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		4BB2466927BE73AE009F3C16 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4BB2466A27BE73C4009F3C16 /* Extensions.swift */,
+				4BAC52B927BFB888006571E8 /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -357,7 +357,7 @@
 				4BD2056B27B50976002A95C7 /* ImageNames.swift in Sources */,
 				4BD2055E27B4E5D4002A95C7 /* SelectPhotosView.swift in Sources */,
 				4BD2056027B4E950002A95C7 /* Labels.swift in Sources */,
-				4BB2466B27BE73C4009F3C16 /* Extensions.swift in Sources */,
+				4BAC52BA27BFB888006571E8 /* Extensions.swift in Sources */,
 				4BD2057327B54C84002A95C7 /* SelectPhotosViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
