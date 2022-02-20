@@ -8,26 +8,25 @@
 import PhotosUI
 
 extension ImagePickerView {
-    
     // MARK: - Coordinator
-    
+
     class Coordinator: PHPickerViewControllerDelegate {
         // MARK: - Static properties
-        
+
         let parent: ImagePickerView
-        
+
         // MARK: - Init
-        
+
         init(_ parent: ImagePickerView) {
             self.parent = parent
         }
-        
+
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-        
+
         // MARK: - PHPickerViewController delegate
-        
+
         func picker(_: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             for image in results {
                 image.itemProvider.loadObject(ofClass: UIImage.self) { selectedPhoto, error in
@@ -47,7 +46,7 @@ extension ImagePickerView {
                     }
                 }
             }
-            
+
             parent.presentationMode.wrappedValue.dismiss()
         }
     }

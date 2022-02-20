@@ -8,7 +8,6 @@
 import XCTest
 
 class PhotoRounderUITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }

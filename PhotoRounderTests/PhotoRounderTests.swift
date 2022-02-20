@@ -5,11 +5,10 @@
 //  Created by Максим Изварин on 10.02.2022.
 //
 
-import XCTest
 @testable import PhotoRounder
+import XCTest
 
 class PhotoRounderTests: XCTestCase {
-
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -32,5 +31,4 @@ class PhotoRounderTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

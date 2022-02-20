@@ -5,17 +5,16 @@
 //  Created by Максим Изварин on 10.02.2022.
 //
 
-import SwiftUI
 import PhotosUI
+import SwiftUI
 
 struct SelectPhotosView: View {
-    
     // MARK: - Public properties
-    
+
     @ObservedObject private var viewModel = SelectPhotosViewModel()
-    
+
     // MARK: - Private properties
-    
+
     @State private var showPhotoLibrary = false
     private let pickerConfiguration: PHPickerConfiguration = {
         var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
@@ -26,31 +25,30 @@ struct SelectPhotosView: View {
     private var isActionButtonDisabled: Bool {
         viewModel.selectedPhotos.isEmpty
     }
-    
+
     // MARK: - Init
-    
+
     init() {
         setupNavBarAppearance()
     }
-    
+
     // MARK: - Body
-    
+
     var body: some View {
         NavigationView {
-            VStack() {
+            VStack {
                 // Selected photos list
                 PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
-                
+
                 // Auto handling photos button
                 Button {
-					
                 } label: {
                     HStack {
                         Images.magic.getImage()
                             .resizable()
                             .frame(width: Constants.imageSize, height: Constants.imageSize)
-                        
+
                         Text(Labels.magic.rawValue)
                             .foregroundColor(isActionButtonDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
                     }
@@ -73,9 +71,9 @@ struct SelectPhotosView: View {
                 .padding([.top], Constants.topPadding)
         }.navigationViewStyle(.stack)
     }
-    
+
     // MARK: - Private functions
-    
+
     private func setupNavBarAppearance() {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]

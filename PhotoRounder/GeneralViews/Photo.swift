@@ -8,31 +8,30 @@
 import SwiftUI
 
 struct Photo: View {
-    
     // MARK: - Private properties
-    
+
     private let removeImagePadding: CGFloat = 5
-    
+
     // MARK: - Public properties
-    
+
     let image: UIImage
     let removeAction: (UIImage) -> Void
-    
+
     // MARK: Init
-    
+
     init(image: UIImage, removeAction: @escaping (UIImage) -> Void) {
         self.image = image
         self.removeAction = removeAction
     }
-    
+
     // MARK: - Body
-    
+
     var body: some View {
         ZStack(alignment: .topTrailing) {
             Image(uiImage: image)
                 .resizable()
                 .scaledToFit()
-            
+
             Button {
                 removeAction(image)
             } label: {
