@@ -13,7 +13,7 @@ final class SelectPhotosViewModel: ObservableObject {
 	// MARK: Public properties
 
 	@Published var selectedPhotos: [UIImage] = []
-	@Published var croppedImages: [UIImage] = []
+	@Published var croppedPhotos: [UIImage] = []
 
 	// MARK: - Public functions
 
@@ -26,8 +26,8 @@ final class SelectPhotosViewModel: ObservableObject {
 	}
 
 	// MARK: - Private functions
-	private func imageHandler(on image: UIImage) {
-		guard let cgImage = image.cgImage else { return }
+	private func photoHandler(on photo: UIImage) {
+		guard let cgImage = photo.cgImage else { return }
 		lazy var detectedFaceRect = CGRect()
 
 		let request = VNDetectFaceRectanglesRequest { request, error in
@@ -51,12 +51,12 @@ final class SelectPhotosViewModel: ObservableObject {
 		let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
 		try? handler.perform([request])
 
-		let croppedImage = croppImage(sourceImage: image, faceRect: detectedFaceRect)
-		croppedImages.append(croppedImage)
+		let croppedImage = croppPhoto(sourcePhoto: photo, faceRect: detectedFaceRect)
+		croppedPhotos.append(croppedImage)
 	}
 
-	private func croppImage(sourceImage: UIImage, faceRect: CGRect) -> UIImage {
-		let cropSquare = getSquareForCropping(sourceImage: sourceImage, faceRect: faceRect)
+	private func croppPhoto(sourcePhoto: UIImage, faceRect: CGRect) -> UIImage {
+		let cropSquare = getSquareForCropping(sourceImage: sourcePhoto, faceRect: faceRect)
 		let renderer = UIGraphicsImageRenderer(size: cropSquare.size)
 
 		let circleCroppedImage = renderer.image { _ in
@@ -64,8 +64,8 @@ final class SelectPhotosViewModel: ObservableObject {
 			let circle = UIBezierPath(ovalIn: drawRect)
 			circle.addClip()
 
-			if let cgImage = sourceImage.cgImage?.cropping(to: cropSquare) {
-				UIImage(cgImage: cgImage, scale: sourceImage.scale, orientation: sourceImage.imageOrientation).draw(in: drawRect)
+			if let cgImage = sourcePhoto.cgImage?.cropping(to: cropSquare) {
+				UIImage(cgImage: cgImage, scale: sourcePhoto.scale, orientation: sourcePhoto.imageOrientation).draw(in: drawRect)
 			}
 		}
 
