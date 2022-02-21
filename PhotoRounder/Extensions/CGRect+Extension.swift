@@ -1,5 +1,5 @@
 //
-//  Extensions.swift
+//  CGRect+Extension.swift
 //  PhotoRounder
 //
 //  Created by Максим Изварин on 18.02.2022.
@@ -13,6 +13,11 @@ extension CGRect {
 	- parameter size: The dimensions of the new rectangle
 	 */
 	init(center: CGPoint, size: CGSize) {
-		self.init(x: center.x - size.width / 2, y: center.y - size.height / 2, width: size.width, height: size.height)
+		self.init(
+            x: center.x - size.width / 2,
+            y: center.y - size.height / 2,
+            width: size.width,
+            height: size.height
+        )
 	}
 }

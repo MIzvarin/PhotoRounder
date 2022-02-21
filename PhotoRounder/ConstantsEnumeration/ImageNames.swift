@@ -18,7 +18,7 @@ enum Images: String {
     func getImage() -> Image {
         switch self {
         case .magic:
-            return Image(uiImage: UIImage(named: self.rawValue)!)
+            return Image(uiImage: UIImage(named: self.rawValue) ?? UIImage())
 
         default:
             return Image(systemName: self.rawValue)

@@ -27,7 +27,8 @@ struct PhotosListView: View {
                     .foregroundColor(Colors.helperText.getColor())
             } else {
                 ScrollView(.vertical, showsIndicators: true) {
-                    LazyVGrid(columns: Array(repeating: GridItem(spacing: spacing), count: columnCount), spacing: spacing) {
+                    let gridItems = Array(repeating: GridItem(spacing: spacing), count: columnCount)
+                    LazyVGrid(columns: gridItems, spacing: spacing) {
                         ForEach(selectedPhotos, id: \.self) { photo in
                             Photo(image: photo, removeAction: { image in
                                 guard let index = selectedPhotos.firstIndex(of: image) else { return }

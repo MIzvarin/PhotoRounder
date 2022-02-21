@@ -1,5 +1,5 @@
 //
-//  ImagePickerView + Coordinator.swift
+//  ImagePickerView+Coordinator.swift
 //  PhotoRounder
 //
 //  Created by Максим Изварин on 16.02.2022.

@@ -77,8 +77,7 @@ final class SelectPhotosViewModel: ObservableObject {
 
 		let smallerDistanceByX = min((1 - faceRect.midX), faceRect.midX)
 		let smallerDistanceByY = min((1 - faceRect.midY), faceRect.midY)
-		let center = CGPoint(x: sourceImage.size.width * faceRect.midX,
-							 y: sourceImage.size.height * (1 - faceRect.midY))
+		let center = CGPoint(x: sourceImage.size.width * faceRect.midX, y: sourceImage.size.height * (1 - faceRect.midY))
 
 		if smallerDistanceByX < smallerDistanceByY {
 			sideSize = sourceImage.size.width * smallerDistanceByX * 2

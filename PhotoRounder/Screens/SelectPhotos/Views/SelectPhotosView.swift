@@ -95,12 +95,12 @@ struct SelectPhotosView_Previews: PreviewProvider {
 
 // MARK: - Extensions
 
-fileprivate extension SelectPhotosView {
+extension SelectPhotosView {
     // MARK: - Constant enumeration
 
-    enum Constants {
-        fileprivate static let imageSize: CGFloat = 20
-        fileprivate static let topPadding: CGFloat = 2
-		fileprivate static let selectionLimit = 60
+    fileprivate enum Constants {
+        static let imageSize: CGFloat = 20
+        static let topPadding: CGFloat = 2
+		static let selectionLimit = 60
     }
 }

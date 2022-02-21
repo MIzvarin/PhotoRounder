@@ -47,6 +47,6 @@ struct Photo: View {
 
 struct Photo_Previews: PreviewProvider {
     static var previews: some View {
-        Photo(image: UIImage(named: Images.magic.rawValue)!) { _ in }
+        Photo(image: UIImage(named: Images.magic.rawValue) ?? UIImage()) { _ in }
     }
 }
