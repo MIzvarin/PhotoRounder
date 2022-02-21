@@ -11,7 +11,7 @@ import SwiftUI
 struct SelectPhotosView: View {
     // MARK: - Public properties
 
-    @ObservedObject private var viewModel = SelectPhotosViewModel()
+    @EnvironmentObject var viewModel: SelectPhotosViewModel
 
     // MARK: - Private properties
 
@@ -24,7 +24,7 @@ struct SelectPhotosView: View {
         return configuration
     }()
     private var isActionButtonDisabled: Bool {
-        viewModel.selectedPhotos.isEmpty || isPhotosHandling
+        viewModel.photos.isEmpty || isPhotosHandling
     }
 
     // MARK: - Init
@@ -40,7 +40,7 @@ struct SelectPhotosView: View {
             ZStack {
                 VStack {
                     // Selected photos list
-                    PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
+                    PhotosListView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     // Auto handling photos button
                     Button {

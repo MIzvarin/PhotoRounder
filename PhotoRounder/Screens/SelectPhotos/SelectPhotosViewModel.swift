@@ -12,19 +12,20 @@ import Vision
 final class SelectPhotosViewModel: ObservableObject {
 	// MARK: Public properties
 
-	@Published var selectedPhotos: [UIImage] = []
-	var croppedPhotos: [UIImage] = []
+    /// key - source image
+    /// value - cropped image
+    @Published var photos: [UIImage: UIImage] = [:]
 
 	// MARK: - Public functions
 
 	func downloadPhoto(_ photo: UIImage) {
-		selectedPhotos.append(photo)
+        photos[photo] = UIImage()
 	}
 
     func croppPhotos(completionHandler: @escaping () -> Void) {
         let dispatchGroup = DispatchGroup()
 
-        selectedPhotos.forEach { photo in
+        photos.keys.forEach { photo in
             dispatchGroup.enter()
             photoHandler(on: photo) {
                 dispatchGroup.leave()
@@ -61,7 +62,7 @@ final class SelectPhotosViewModel: ObservableObject {
 		try? handler.perform([request])
 
 		let croppedImage = croppPhoto(sourcePhoto: photo, faceRect: detectedFaceRect)
-		croppedPhotos.append(croppedImage)
+		photos[photo] = croppedImage
         completionHandler()
 	}
 

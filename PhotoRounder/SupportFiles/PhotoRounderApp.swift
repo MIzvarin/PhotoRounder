@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct PhotoRounderApp: App {
+    @StateObject private var viewModel = SelectPhotosViewModel()
+
     var body: some Scene {
         WindowGroup {
             SelectPhotosView()
+                .environmentObject(viewModel)
         }
     }
 }
