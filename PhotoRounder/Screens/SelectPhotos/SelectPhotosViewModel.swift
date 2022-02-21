@@ -26,9 +26,9 @@ final class SelectPhotosViewModel: ObservableObject {
 
         selectedPhotos.forEach { photo in
             dispatchGroup.enter()
-            defer { dispatchGroup.leave() }
-
-            photoHandler(on: photo)
+            photoHandler(on: photo) {
+                dispatchGroup.leave()
+            }
         }
 
         dispatchGroup.notify(queue: .main) {
@@ -36,8 +36,14 @@ final class SelectPhotosViewModel: ObservableObject {
         }
     }
 
+    private func test(completionHandler: @escaping () -> Void) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+            completionHandler()
+        }
+    }
+
 	// MARK: - Private functions
-	private func photoHandler(on photo: UIImage) {
+    private func photoHandler(on photo: UIImage, completionHandled: @escaping () -> Void) {
 		guard let cgImage = photo.cgImage else { return }
 		lazy var detectedFaceRect = CGRect()
 
@@ -62,6 +68,7 @@ final class SelectPhotosViewModel: ObservableObject {
 
 		let croppedImage = croppPhoto(sourcePhoto: photo, faceRect: detectedFaceRect)
 		croppedPhotos.append(croppedImage)
+        completionHandled()
 	}
 
 	private func croppPhoto(sourcePhoto: UIImage, faceRect: CGRect) -> UIImage {
