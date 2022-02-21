@@ -21,12 +21,17 @@ final class SelectPhotosViewModel: ObservableObject {
 		selectedPhotos.append(photo)
 	}
 
-	func removeAllPhotos() {
-		selectedPhotos.removeAll()
-	}
-
     func croppPhotos(completionHandler: @escaping () -> Void) {
-        DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+        let dispatchGroup = DispatchGroup()
+
+        selectedPhotos.forEach { photo in
+            dispatchGroup.enter()
+            defer { dispatchGroup.leave() }
+
+            photoHandler(on: photo)
+        }
+
+        dispatchGroup.notify(queue: .main) {
             completionHandler()
         }
     }
@@ -41,9 +46,7 @@ final class SelectPhotosViewModel: ObservableObject {
 				print("Error: \(error)")
 				return
 			}
-
 			// Must be only one face
-
 			guard
 				let faceObservation = request.results?.first as? VNFaceObservation,
 				request.results?.count == 1
