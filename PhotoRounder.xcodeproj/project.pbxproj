@@ -24,6 +24,7 @@
 		4BD2057527B63F88002A95C7 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2057427B63F88002A95C7 /* Photo.swift */; };
 		FA4994FE27BCD60600D752E5 /* ImagePickerView+Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4994FD27BCD60600D752E5 /* ImagePickerView+Coordinator.swift */; };
 		FAB8F70E27C3A6B900BE7C55 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F70D27C3A6B900BE7C55 /* View+Extension.swift */; };
+		FAE6BB6F27C3F19500FBB285 /* PhotosSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE6BB6E27C3F19500FBB285 /* PhotosSliderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		4BD2057427B63F88002A95C7 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		FA4994FD27BCD60600D752E5 /* ImagePickerView+Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImagePickerView+Coordinator.swift"; sourceTree = "<group>"; };
 		FAB8F70D27C3A6B900BE7C55 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		FAE6BB6E27C3F19500FBB285 /* PhotosSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosSliderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				4BD2057427B63F88002A95C7 /* Photo.swift */,
+				FAE6BB6E27C3F19500FBB285 /* PhotosSliderView.swift */,
 			);
 			path = GeneralViews;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				4BD2056227B4F6E3002A95C7 /* Colors.swift in Sources */,
 				4BD2056627B4FB8A002A95C7 /* ImagePickerView.swift in Sources */,
 				4BD2057527B63F88002A95C7 /* Photo.swift in Sources */,
+				FAE6BB6F27C3F19500FBB285 /* PhotosSliderView.swift in Sources */,
 				4BD2056B27B50976002A95C7 /* ImageNames.swift in Sources */,
 				4BD2055E27B4E5D4002A95C7 /* SelectPhotosView.swift in Sources */,
 				4BD2056027B4E950002A95C7 /* Labels.swift in Sources */,

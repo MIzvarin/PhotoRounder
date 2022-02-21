@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Photo: View {
     // MARK: - Private properties
-
+    @State private var showPhotosSlider = false
     private let removeImagePadding: CGFloat = 5
 
     // MARK: - Public properties
@@ -28,9 +28,15 @@ struct Photo: View {
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
+            Button {
+                showPhotosSlider.toggle()
+            } label: {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+            }.sheet(isPresented: $showPhotosSlider) {
+                PhotosSliderView()
+            }
 
             Button {
                 removeAction(image)
