@@ -37,7 +37,7 @@ final class SelectPhotosViewModel: ObservableObject {
     }
 
 	// MARK: - Private functions
-    private func photoHandler(on photo: UIImage, completionHandled: @escaping () -> Void) {
+    private func photoHandler(on photo: UIImage, completionHandler: @escaping () -> Void) {
 		guard let cgImage = photo.cgImage else { return }
 		lazy var detectedFaceRect = CGRect()
 
@@ -62,7 +62,7 @@ final class SelectPhotosViewModel: ObservableObject {
 
 		let croppedImage = croppPhoto(sourcePhoto: photo, faceRect: detectedFaceRect)
 		croppedPhotos.append(croppedImage)
-        completionHandled()
+        completionHandler()
 	}
 
 	private func croppPhoto(sourcePhoto: UIImage, faceRect: CGRect) -> UIImage {
