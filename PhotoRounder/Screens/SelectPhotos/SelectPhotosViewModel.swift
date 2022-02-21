@@ -13,7 +13,7 @@ final class SelectPhotosViewModel: ObservableObject {
 	// MARK: Public properties
 
 	@Published var selectedPhotos: [UIImage] = []
-	@Published var croppedPhotos: [UIImage] = []
+	var croppedPhotos: [UIImage] = []
 
 	// MARK: - Public functions
 
@@ -24,6 +24,12 @@ final class SelectPhotosViewModel: ObservableObject {
 	func removeAllPhotos() {
 		selectedPhotos.removeAll()
 	}
+
+    func croppPhotos(completionHandler: @escaping () -> Void) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+            completionHandler()
+        }
+    }
 
 	// MARK: - Private functions
 	private func photoHandler(on photo: UIImage) {

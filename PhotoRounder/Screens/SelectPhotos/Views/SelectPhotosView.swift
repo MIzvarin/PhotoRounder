@@ -16,10 +16,11 @@ struct SelectPhotosView: View {
     // MARK: - Private properties
 
     @State private var showPhotoLibrary = false
+    @State private var isPhotosHandling = false
     private let pickerConfiguration: PHPickerConfiguration = {
         var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         configuration.filter = .images
-		configuration.selectionLimit = Constants.selectionLimit
+        configuration.selectionLimit = Constants.selectionLimit
         return configuration
     }()
     private var isActionButtonDisabled: Bool {
@@ -36,25 +37,39 @@ struct SelectPhotosView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                // Selected photos list
-                PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
-					.frame(maxWidth: .infinity, maxHeight: .infinity)
+            ZStack {
+                if isPhotosHandling {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: Colors.magic.getColor()))
+                        .scaleEffect(Constants.progressViewScaleEffect)
+                } else {
+                    VStack {
+                        // Selected photos list
+                        PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-                // Auto handling photos button
-                Button {
-                } label: {
-                    HStack {
-                        Images.magic.getImage()
-                            .resizable()
-                            .frame(width: Constants.imageSize, height: Constants.imageSize)
+                        // Auto handling photos button
+                        Button {
+                            isPhotosHandling.toggle()
+                            print(isPhotosHandling)
+                            viewModel.croppPhotos {
+                                isPhotosHandling.toggle()
+                            }
+                        } label: {
+                            HStack {
+                                Images.magic.getImage()
+                                    .resizable()
+                                    .frame(width: Constants.imageSize, height: Constants.imageSize)
 
-                        Text(Labels.magic.rawValue)
-                            .foregroundColor(isActionButtonDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
-                    }
-                }.padding()
-                    .disabled(isActionButtonDisabled)
+                                Text(Labels.magic.rawValue)
+                                    .foregroundColor(isActionButtonDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
+                            }
+                        }.padding()
+                            .disabled(isActionButtonDisabled)
+                    }.padding([.top], Constants.topPadding)
+                }
             }.navigationTitle(Labels.selectedPhotos.rawValue)
+            // Navigation toolbar
                 .toolbar(content: {
                     // Add photos button
                     Button {
@@ -66,9 +81,8 @@ struct SelectPhotosView: View {
                         ImagePickerView(configuration: pickerConfiguration) { selectedImage in
                             viewModel.downloadPhoto(selectedImage)
                         }
-                    }
+                    }.disabled(isPhotosHandling)
                 })
-                .padding([.top], Constants.topPadding)
         }.navigationViewStyle(.stack)
     }
 
@@ -101,6 +115,7 @@ extension SelectPhotosView {
     fileprivate enum Constants {
         static let imageSize: CGFloat = 20
         static let topPadding: CGFloat = 2
-		static let selectionLimit = 60
+        static let selectionLimit = 60
+        static let progressViewScaleEffect: CGFloat = 2
     }
 }
