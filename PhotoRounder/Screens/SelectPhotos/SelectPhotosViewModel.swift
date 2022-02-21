@@ -36,12 +36,6 @@ final class SelectPhotosViewModel: ObservableObject {
         }
     }
 
-    private func test(completionHandler: @escaping () -> Void) {
-        DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
-            completionHandler()
-        }
-    }
-
 	// MARK: - Private functions
     private func photoHandler(on photo: UIImage, completionHandled: @escaping () -> Void) {
 		guard let cgImage = photo.cgImage else { return }
