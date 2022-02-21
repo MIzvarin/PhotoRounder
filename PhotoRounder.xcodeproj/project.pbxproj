@@ -23,6 +23,7 @@
 		4BD2057327B54C84002A95C7 /* SelectPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2057227B54C84002A95C7 /* SelectPhotosViewModel.swift */; };
 		4BD2057527B63F88002A95C7 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2057427B63F88002A95C7 /* Photo.swift */; };
 		FA4994FE27BCD60600D752E5 /* ImagePickerView+Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4994FD27BCD60600D752E5 /* ImagePickerView+Coordinator.swift */; };
+		FAB8F70E27C3A6B900BE7C55 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F70D27C3A6B900BE7C55 /* View+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		4BD2057227B54C84002A95C7 /* SelectPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotosViewModel.swift; sourceTree = "<group>"; };
 		4BD2057427B63F88002A95C7 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		FA4994FD27BCD60600D752E5 /* ImagePickerView+Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImagePickerView+Coordinator.swift"; sourceTree = "<group>"; };
+		FAB8F70D27C3A6B900BE7C55 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				4BAC52B927BFB888006571E8 /* CGRect+Extension.swift */,
+				FAB8F70D27C3A6B900BE7C55 /* View+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				4BD2055E27B4E5D4002A95C7 /* SelectPhotosView.swift in Sources */,
 				4BD2056027B4E950002A95C7 /* Labels.swift in Sources */,
 				4BAC52BA27BFB888006571E8 /* CGRect+Extension.swift in Sources */,
+				FAB8F70E27C3A6B900BE7C55 /* View+Extension.swift in Sources */,
 				4BD2057327B54C84002A95C7 /* SelectPhotosViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

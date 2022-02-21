@@ -24,7 +24,7 @@ struct SelectPhotosView: View {
         return configuration
     }()
     private var isActionButtonDisabled: Bool {
-        viewModel.selectedPhotos.isEmpty
+        viewModel.selectedPhotos.isEmpty || isPhotosHandling
     }
 
     // MARK: - Init
@@ -38,37 +38,34 @@ struct SelectPhotosView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if isPhotosHandling {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: Colors.magic.getColor()))
-                        .scaleEffect(Constants.progressViewScaleEffect)
-                } else {
-                    VStack {
-                        // Selected photos list
-                        PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-
-                        // Auto handling photos button
-                        Button {
+                VStack {
+                    // Selected photos list
+                    PhotosListView(selectedPhotos: $viewModel.selectedPhotos)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    // Auto handling photos button
+                    Button {
+                        isPhotosHandling.toggle()
+                        viewModel.croppPhotos {
                             isPhotosHandling.toggle()
-                            print(isPhotosHandling)
-                            viewModel.croppPhotos {
-                                isPhotosHandling.toggle()
-                            }
-                        } label: {
-                            HStack {
-                                Images.magic.getImage()
-                                    .resizable()
-                                    .frame(width: Constants.imageSize, height: Constants.imageSize)
-
-                                Text(Labels.magic.rawValue)
-                                    .foregroundColor(isActionButtonDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
-                            }
-                        }.padding()
-                            .disabled(isActionButtonDisabled)
-                    }.padding([.top], Constants.topPadding)
-                }
+                        }
+                    } label: {
+                        HStack {
+                            Images.magic.getImage()
+                                .resizable()
+                                .frame(width: Constants.imageSize, height: Constants.imageSize)
+                            Text(Labels.magic.rawValue)
+                                .foregroundColor(isActionButtonDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
+                        }
+                    }.padding()
+                        .disabled(isActionButtonDisabled)
+                }.padding([.top], Constants.topPadding)
+                // Progressive view
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: Colors.magic.getColor()))
+                    .scaleEffect(Constants.progressViewScaleEffect)
+                    .hidden(!isPhotosHandling)
             }.navigationTitle(Labels.selectedPhotos.rawValue)
+
             // Navigation toolbar
                 .toolbar(content: {
                     // Add photos button
