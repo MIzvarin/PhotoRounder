@@ -25,7 +25,8 @@ struct PhotosListView: View {
             } else {
                 ScrollView(.vertical, showsIndicators: true) {
                     let gridItems = Array(repeating: GridItem(spacing: Constants.spacing), count: columnCount)
-                    let photos = displayMode == .showSourcePhotos ? Array(viewModel.photos.keys) : Array(viewModel.photos.values)
+                    let photos = displayMode == .showSourcePhotos ? Array(viewModel.photos.keys)
+                    : Array(viewModel.photos.values)
 
                     LazyVGrid(columns: gridItems, spacing: Constants.spacing) {
                         ForEach(photos, id: \.self) { photo in

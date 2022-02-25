@@ -82,7 +82,6 @@ struct SelectPhotosView: View {
                     }.sheet(isPresented: $showPhotoLibrary) {
                         ImagePickerView(configuration: pickerConfiguration) { selectedImage in
                             viewModel.downloadPhoto(selectedImage)
-                            print(viewModel.photos.count)
                         }
                     }.disabled(isPhotosHandling)
                 })
