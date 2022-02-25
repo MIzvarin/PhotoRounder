@@ -9,7 +9,7 @@ import Combine
 import UIKit
 import Vision
 
-final class SelectPhotosViewModel: ObservableObject {
+final class ViewModel: ObservableObject {
 	// MARK: Public properties
 
     /// key - source image
@@ -24,21 +24,28 @@ final class SelectPhotosViewModel: ObservableObject {
 
     func croppPhotos(completionHandler: @escaping () -> Void) {
         let dispatchGroup = DispatchGroup()
+        let queue = DispatchQueue.global(qos: .utility)
+        var tmpPhotos: [UIImage: UIImage] = [:]
 
-        photos.keys.forEach { photo in
-            dispatchGroup.enter()
-            photoHandler(on: photo) {
-                dispatchGroup.leave()
+        queue.async(group: dispatchGroup) { [weak self] in
+            self?.photos.keys.forEach { photo in
+                dispatchGroup.enter()
+                self?.photoHandler(on: photo) { croppedPhoto in
+                    tmpPhotos[photo] = croppedPhoto
+                    dispatchGroup.leave()
+                }
             }
-        }
 
-        dispatchGroup.notify(queue: .main) {
-            completionHandler()
+            dispatchGroup.notify(queue: .main) { [weak self] in
+                self?.photos = tmpPhotos
+                completionHandler()
+            }
         }
     }
 
 	// MARK: - Private functions
-    private func photoHandler(on photo: UIImage, completionHandler: @escaping () -> Void) {
+
+    private func photoHandler(on photo: UIImage, completionHandler: @escaping (UIImage) -> Void) {
 		guard let cgImage = photo.cgImage else { return }
 		lazy var detectedFaceRect = CGRect()
 
@@ -62,8 +69,7 @@ final class SelectPhotosViewModel: ObservableObject {
 		try? handler.perform([request])
 
 		let croppedImage = croppPhoto(sourcePhoto: photo, faceRect: detectedFaceRect)
-		photos[photo] = croppedImage
-        completionHandler()
+        completionHandler(croppedImage)
 	}
 
 	private func croppPhoto(sourcePhoto: UIImage, faceRect: CGRect) -> UIImage {

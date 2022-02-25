@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct PhotosListView: View {
-    // MARK: - Private properties
-
-    private let spacing: CGFloat = 2
-
     // MARK: - Public properties
 
-    @EnvironmentObject var viewModel: SelectPhotosViewModel
+    @EnvironmentObject var viewModel: ViewModel
+    let displayMode: DisplayMode
 
     // MARK: - Body
 
@@ -27,10 +24,10 @@ struct PhotosListView: View {
                     .foregroundColor(Colors.helperText.getColor())
             } else {
                 ScrollView(.vertical, showsIndicators: true) {
-                    let gridItems = Array(repeating: GridItem(spacing: spacing), count: columnCount)
-                    let photos = Array(viewModel.photos.keys)
+                    let gridItems = Array(repeating: GridItem(spacing: Constants.spacing), count: columnCount)
+                    let photos = displayMode == .showSourcePhotos ? Array(viewModel.photos.keys) : Array(viewModel.photos.values)
 
-                    LazyVGrid(columns: gridItems, spacing: spacing) {
+                    LazyVGrid(columns: gridItems, spacing: Constants.spacing) {
                         ForEach(photos, id: \.self) { photo in
                             Photo(image: photo, removeAction: { image in
                                 // Removal animation
@@ -38,12 +35,9 @@ struct PhotosListView: View {
                                     _ = viewModel.photos.removeValue(forKey: image)
                                 }
                             })
-                                .scaledToFill()
-                                .cornerRadius(spacing)
-                                .animation(.easeIn, value: 1)
                         }
                     }
-                }.padding([.leading, .trailing], spacing)
+                }.padding([.leading, .trailing], Constants.spacing)
             }
         }
     }
@@ -51,6 +45,22 @@ struct PhotosListView: View {
     // MARK: - Private functions
 
     private func calculateColumnsNumber() -> Int {
-        viewModel.photos.count < 3  ? viewModel.photos.count : 3
+        viewModel.photos.count < Constants.columnsCount  ? viewModel.photos.count : Constants.columnsCount
     }
+}
+
+// MARK: - Extensions
+
+fileprivate extension PhotosListView {
+    enum Constants {
+        static let columnsCount = 3
+        static let spacing: CGFloat = 2
+    }
+}
+
+// MARK: - DisplayMode
+
+enum DisplayMode {
+    case showSourcePhotos
+    case showCroppedPhotos
 }

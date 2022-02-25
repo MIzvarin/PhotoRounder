@@ -11,12 +11,13 @@ import SwiftUI
 struct SelectPhotosView: View {
     // MARK: - Public properties
 
-    @EnvironmentObject var viewModel: SelectPhotosViewModel
+    @EnvironmentObject var viewModel: ViewModel
 
     // MARK: - Private properties
 
     @State private var showPhotoLibrary = false
     @State private var isPhotosHandling = false
+    @State private var showCroppedPhotos = false
     private let pickerConfiguration: PHPickerConfiguration = {
         var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         configuration.filter = .images
@@ -40,12 +41,13 @@ struct SelectPhotosView: View {
             ZStack {
                 VStack {
                     // Selected photos list
-                    PhotosListView()
+                    PhotosListView(displayMode: .showSourcePhotos)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     // Auto handling photos button
                     Button {
                         isPhotosHandling.toggle()
                         viewModel.croppPhotos {
+                            showCroppedPhotos.toggle()
                             isPhotosHandling.toggle()
                         }
                     } label: {
@@ -54,18 +56,21 @@ struct SelectPhotosView: View {
                                 .resizable()
                                 .frame(width: Constants.imageSize, height: Constants.imageSize)
                             Text(Labels.magic.rawValue)
-                                .foregroundColor(isActionButtonDisabled ? Colors.helperText.getColor() : Colors.magic.getColor())
+                                .foregroundColor(isActionButtonDisabled ?
+                                                 Colors.helperText.getColor() : Colors.magic.getColor())
                         }
                     }.padding()
                         .disabled(isActionButtonDisabled)
+                        .fullScreenCover(isPresented: $showCroppedPhotos) {
+                            CroppedPhotos()
+                        }
                 }.padding([.top], Constants.topPadding)
                 // Progressive view
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: Colors.magic.getColor()))
+                ProgressView(Constants.progressMessage)
+                    .progressViewStyle(CircularProgressViewStyle(tint: Colors.main.getColor()))
                     .scaleEffect(Constants.progressViewScaleEffect)
                     .hidden(!isPhotosHandling)
             }.navigationTitle(Labels.selectedPhotos.rawValue)
-
             // Navigation toolbar
                 .toolbar(content: {
                     // Add photos button
@@ -77,6 +82,7 @@ struct SelectPhotosView: View {
                     }.sheet(isPresented: $showPhotoLibrary) {
                         ImagePickerView(configuration: pickerConfiguration) { selectedImage in
                             viewModel.downloadPhoto(selectedImage)
+                            print(viewModel.photos.count)
                         }
                     }.disabled(isPhotosHandling)
                 })
@@ -101,6 +107,7 @@ struct SelectPhotosView: View {
 struct SelectPhotosView_Previews: PreviewProvider {
     static var previews: some View {
         SelectPhotosView()
+            .environmentObject(ViewModel())
     }
 }
 
@@ -114,5 +121,6 @@ fileprivate extension SelectPhotosView {
         static let topPadding: CGFloat = 2
         static let selectionLimit = 60
         static let progressViewScaleEffect: CGFloat = 2
+        static let progressMessage = "Please wait..."
     }
 }
