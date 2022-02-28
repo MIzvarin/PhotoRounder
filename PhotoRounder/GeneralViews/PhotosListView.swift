@@ -33,7 +33,7 @@ struct PhotosListView: View {
                             Photo(image: photo, removeAction: { image in
                                 // Removal animation
                                 withAnimation(.easeInOut(duration: 0.5)) {
-                                    _ = viewModel.photos.removeValue(forKey: image)
+                                    viewModel.removePhoto(image)
                                 }
                             })
                         }

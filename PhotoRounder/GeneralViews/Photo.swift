@@ -31,7 +31,7 @@ struct Photo: View {
             Button {
                 showPhotosSlider.toggle()
             } label: {
-                Image(uiImage: image)
+                Image(uiImage: image.downsample() ?? UIImage())
                     .resizable()
                     .scaledToFit()
             }.sheet(isPresented: $showPhotosSlider) {

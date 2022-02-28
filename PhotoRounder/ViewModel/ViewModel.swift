@@ -10,17 +10,21 @@ import UIKit
 import Vision
 
 final class ViewModel: ObservableObject {
-	// MARK: Public properties
+    // MARK: Public properties
 
     /// key - source image
     /// value - cropped image
     @Published var photos: [UIImage: UIImage] = [:]
 
-	// MARK: - Public functions
+    // MARK: - Public functions
 
-	func downloadPhoto(_ photo: UIImage) {
+    func downloadPhoto(_ photo: UIImage) {
         photos[photo] = UIImage()
-	}
+    }
+
+    func removePhoto(_ photo: UIImage) {
+        photos.removeValue(forKey: photo)
+    }
 
     func croppPhotos(completionHandler: @escaping () -> Void) {
         let dispatchGroup = DispatchGroup()
@@ -43,65 +47,72 @@ final class ViewModel: ObservableObject {
         }
     }
 
-	// MARK: - Private functions
+    // MARK: - Private functions
 
     private func photoHandler(on photo: UIImage, completionHandler: @escaping (UIImage) -> Void) {
-		guard let cgImage = photo.cgImage else { return }
-		lazy var detectedFaceRect = CGRect()
+        guard let cgImage = photo.cgImage else { return }
+        lazy var detectedFaceRect = CGRect()
 
-		let request = VNDetectFaceRectanglesRequest { request, error in
-			if let error = error {
-				print("Error: \(error)")
-				return
-			}
-			// Must be only one face
-			guard
-				let faceObservation = request.results?.first as? VNFaceObservation,
-				request.results?.count == 1
-			else {
-				return
-			}
+        let request = VNDetectFaceRectanglesRequest { request, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            // Must be only one face
+            guard
+                let faceObservation = request.results?.first as? VNFaceObservation,
+                request.results?.count == 1
+            else {
+                return
+            }
 
-			detectedFaceRect = faceObservation.boundingBox
-		}
+            detectedFaceRect = faceObservation.boundingBox
+        }
 
-		let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-		try? handler.perform([request])
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        try? handler.perform([request])
 
-		let croppedImage = croppPhoto(sourcePhoto: photo, faceRect: detectedFaceRect)
+        let croppedImage = croppPhoto(sourcePhoto: photo, faceRect: detectedFaceRect)
         completionHandler(croppedImage)
-	}
+    }
 
-	private func croppPhoto(sourcePhoto: UIImage, faceRect: CGRect) -> UIImage {
-		let cropSquare = getSquareForCropping(sourceImage: sourcePhoto, faceRect: faceRect)
-		let renderer = UIGraphicsImageRenderer(size: cropSquare.size)
+    private func croppPhoto(sourcePhoto: UIImage, faceRect: CGRect) -> UIImage {
+        let cropSquare = getSquareForCropping(sourceImage: sourcePhoto, faceRect: faceRect)
+        let renderer = UIGraphicsImageRenderer(size: cropSquare.size)
 
-		let circleCroppedImage = renderer.image { _ in
-			let drawRect = CGRect(origin: .zero, size: cropSquare.size)
-			let circle = UIBezierPath(ovalIn: drawRect)
-			circle.addClip()
+        let circleCroppedImage = renderer.image { _ in
+            let drawRect = CGRect(origin: .zero, size: cropSquare.size)
+            let circle = UIBezierPath(ovalIn: drawRect)
+            circle.addClip()
 
-			if let cgImage = sourcePhoto.cgImage?.cropping(to: cropSquare) {
-				UIImage(cgImage: cgImage, scale: sourcePhoto.scale, orientation: sourcePhoto.imageOrientation).draw(in: drawRect)
-			}
-		}
+            if let cgImage = sourcePhoto.cgImage?.cropping(to: cropSquare) {
+                UIImage(
+                    cgImage: cgImage,
+                    scale: sourcePhoto.scale,
+                    orientation: sourcePhoto.imageOrientation
+                ).draw(in: drawRect)
+            }
+        }
 
-		return circleCroppedImage
-	}
+        return circleCroppedImage
+    }
 
-	private func getSquareForCropping(sourceImage: UIImage, faceRect: CGRect) -> CGRect {
-		var sideSize: CGFloat
+    private func getSquareForCropping(sourceImage: UIImage, faceRect: CGRect) -> CGRect {
+        var sideSize: CGFloat
 
-		let smallerDistanceByX = min((1 - faceRect.midX), faceRect.midX)
-		let smallerDistanceByY = min((1 - faceRect.midY), faceRect.midY)
-		let center = CGPoint(x: sourceImage.size.width * faceRect.midX, y: sourceImage.size.height * (1 - faceRect.midY))
+        let smallerDistanceByX = min((1 - faceRect.midX), faceRect.midX)
+        let smallerDistanceByY = min((1 - faceRect.midY), faceRect.midY)
+        let center = CGPoint(
+            x: sourceImage.size.width * faceRect.midX,
+            y: sourceImage.size.height * (1 - faceRect.midY)
+        )
 
-		if smallerDistanceByX < smallerDistanceByY {
-			sideSize = sourceImage.size.width * smallerDistanceByX * 2
-		} else {
-			sideSize = sourceImage.size.height * smallerDistanceByY * 2
-		}
+        if smallerDistanceByX < smallerDistanceByY {
+            sideSize = sourceImage.size.width * smallerDistanceByX * 2
+        } else {
+            sideSize = sourceImage.size.height * smallerDistanceByY * 2
+        }
 
-		return CGRect(center: center, size: CGSize(width: sideSize, height: sideSize))
-	}
+        return CGRect(center: center, size: CGSize(width: sideSize, height: sideSize))
+    }
 }
