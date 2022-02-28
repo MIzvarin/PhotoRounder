@@ -80,8 +80,11 @@ struct SelectPhotosView: View {
                         Images.plus.getImage()
                             .foregroundColor(.white)
                     }.sheet(isPresented: $showPhotoLibrary) {
-                        ImagePickerView(configuration: pickerConfiguration) { selectedImage in
-                            viewModel.downloadPhoto(selectedImage)
+                        ImagePickerView(configuration: pickerConfiguration) {
+                            isPhotosHandling.toggle()
+                        } completionHandler: { selectedPhotos in
+                            viewModel.downloadPhotos(selectedPhotos)
+                            isPhotosHandling.toggle()
                         }
                     }.disabled(isPhotosHandling)
                 })

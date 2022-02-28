@@ -11,13 +11,19 @@ import SwiftUI
 struct ImagePickerView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     let configuration: PHPickerConfiguration
-    let completion: (_ selectedImage: UIImage) -> Void
+    let startingHandler: () -> Void
+    let completionHandler: (_ selectedPhotos: [UIImage]) -> Void
 
     // MARK: - Init
 
-    init(configuration: PHPickerConfiguration, completion: @escaping (_ selectedImage: UIImage) -> Void) {
+    init(
+        configuration: PHPickerConfiguration,
+        startingHandler: @escaping () -> Void,
+        completionHandler: @escaping (_ selectedPhotos: [UIImage]) -> Void
+    ) {
         self.configuration = configuration
-        self.completion = completion
+        self.startingHandler = startingHandler
+        self.completionHandler = completionHandler
     }
 
     // MARK: - Public functions

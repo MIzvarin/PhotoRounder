@@ -18,8 +18,10 @@ final class ViewModel: ObservableObject {
 
     // MARK: - Public functions
 
-    func downloadPhoto(_ photo: UIImage) {
-        photos[photo] = UIImage()
+    func downloadPhotos(_ selectedPhotos: [UIImage]) {
+        selectedPhotos.forEach { photo in
+            photos[photo] = UIImage()
+        }
     }
 
     func removePhoto(_ photo: UIImage) {

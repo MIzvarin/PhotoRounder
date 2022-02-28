@@ -28,23 +28,31 @@ extension ImagePickerView {
         // MARK: - PHPickerViewController delegate
 
         func picker(_: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-            for image in results {
-                image.itemProvider.loadObject(ofClass: UIImage.self) { selectedPhoto, error in
-                    if let error = error {
-                        print("Error: \(error)")
-                        return
-                    }
+            self.parent.startingHandler()
+            let dispatchGroup = DispatchGroup()
+            let queue = DispatchQueue.global(qos: .userInteractive)
+            var selectedPhotos: [UIImage] = []
 
-                    guard let uiImage = selectedPhoto as? UIImage else {
-                        print("unable to unwrap image as UIImage")
-                        return
-                    }
+            queue.async(group: dispatchGroup) {
+                results.forEach { selectedPhoto in
+                    dispatchGroup.enter()
 
-                    print("Success")
-                    DispatchQueue.main.async {
-                        self.parent.completion(uiImage)
+                    selectedPhoto.itemProvider.loadObject(ofClass: UIImage.self) { selectedPhoto, error in
+                        if let error = error {
+                            print("Error: \(error)")
+                            return
+                        }
+
+                        guard let uiImage = selectedPhoto as? UIImage else { return }
+
+                        selectedPhotos.append(uiImage)
+                        dispatchGroup.leave()
                     }
                 }
+            }
+
+            dispatchGroup.notify(queue: .main) { [weak self] in
+                self?.parent.completionHandler(selectedPhotos)
             }
 
             parent.presentationMode.wrappedValue.dismiss()

@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImage {
-    func downsample() -> UIImage? {
+    func downscale() -> UIImage? {
         guard
             let imageData = self.pngData(),
             let cgImageSource = CGImageSourceCreateWithData(imageData as CFData, nil)
