@@ -10,17 +10,21 @@ import SwiftUI
 struct PhotosSliderView: View {
 	// MARK: - Public properies
 	@EnvironmentObject var viewModel: ViewModel
+	@State var selectedImage: UIImage
 	let displayMode: DisplayMode
 	
-    var body: some View {
+	var body: some View {
 		let photos = getPhotosList()
 		
-		TabView {
+		TabView(selection: $selectedImage) {
 			ForEach(photos, id: \.self) { photo in
-				Photo(image: photo)
+				Image(uiImage: photo)
+					.resizable()
+					.scaledToFit()
+					.tag(photo)
 			}
 		}.tabViewStyle(PageTabViewStyle())
-    }
+	}
 	
 	// MARK: - Pivate functions
 	private func getPhotosList() -> [UIImage] {
@@ -30,11 +34,4 @@ struct PhotosSliderView: View {
 			return Array(viewModel.photos.values)
 		}
 	}
-}
-
-struct PhotosSliderView_Previews: PreviewProvider {
-    static var previews: some View {
-		PhotosSliderView(displayMode: .showSourcePhotos)
-			.environmentObject(ViewModel())
-    }
 }

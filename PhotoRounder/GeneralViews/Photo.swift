@@ -34,7 +34,7 @@ struct Photo: View {
                     .resizable()
                     .scaledToFit()
             }.sheet(isPresented: $showPhotosSlider) {
-                PhotosSliderView(displayMode: displayMode)
+				PhotosSliderView(selectedImage: image, displayMode: displayMode)
             }
         }
     }
