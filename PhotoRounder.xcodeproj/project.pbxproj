@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4BAC52BA27BFB888006571E8 /* CGRect+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAC52B927BFB888006571E8 /* CGRect+Extension.swift */; };
+		4BC139FF27CE36960092A301 /* DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC139FE27CE36960092A301 /* DisplayMode.swift */; };
 		4BD2053227B4E579002A95C7 /* PhotoRounderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2053127B4E579002A95C7 /* PhotoRounderApp.swift */; };
 		4BD2053627B4E57A002A95C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2053527B4E57A002A95C7 /* Assets.xcassets */; };
 		4BD2053927B4E57A002A95C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2053827B4E57A002A95C7 /* Preview Assets.xcassets */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		4BAC52B927BFB888006571E8 /* CGRect+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
+		4BC139FE27CE36960092A301 /* DisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMode.swift; sourceTree = "<group>"; };
 		4BD2052E27B4E579002A95C7 /* PhotoRounder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoRounder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD2053127B4E579002A95C7 /* PhotoRounderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRounderApp.swift; sourceTree = "<group>"; };
 		4BD2053527B4E57A002A95C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				4BD2056127B4F6E3002A95C7 /* Colors.swift */,
 				4BD2055F27B4E950002A95C7 /* Labels.swift */,
 				4BD2056A27B50976002A95C7 /* ImageNames.swift */,
+				4BC139FE27CE36960092A301 /* DisplayMode.swift */,
 			);
 			path = ConstantsEnumeration;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				4BD2056627B4FB8A002A95C7 /* ImagePickerView.swift in Sources */,
 				4BD2057527B63F88002A95C7 /* Photo.swift in Sources */,
 				FAE6BB6F27C3F19500FBB285 /* PhotosSliderView.swift in Sources */,
+				4BC139FF27CE36960092A301 /* DisplayMode.swift in Sources */,
 				4BD2056B27B50976002A95C7 /* ImageNames.swift in Sources */,
 				FA08DFEE27CCF5A600AB8784 /* UiImage+Extension.swift in Sources */,
 				4BD2055E27B4E5D4002A95C7 /* SelectPhotosView.swift in Sources */,

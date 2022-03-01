@@ -14,14 +14,17 @@ final class ViewModel: ObservableObject {
 
     /// key - source image
     /// value - cropped image
-    @Published var photos: [UIImage: UIImage] = [:]
+    @Published private(set) var photos: [UIImage: UIImage] = [:]
 
     // MARK: - Public functions
 
     func downloadPhotos(_ selectedPhotos: [UIImage]) {
-        selectedPhotos.forEach { photo in
-            photos[photo] = UIImage()
-        }
+		var tmpPhotos: [UIImage: UIImage] = [:]
+		let targetSize = CGSize(width: 768, height: 1024)
+		selectedPhotos.forEach { selectedPhoto in
+			tmpPhotos[selectedPhoto.downsample(to: targetSize) ?? selectedPhoto] = UIImage()
+		}
+		photos = tmpPhotos
     }
 
     func removePhoto(_ photo: UIImage) {

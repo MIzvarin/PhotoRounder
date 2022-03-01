@@ -13,16 +13,15 @@ struct Photo: View {
     private let removeImagePadding: CGFloat = 5
 
     // MARK: - Public properties
-
+	@EnvironmentObject var viewModel: ViewModel
     let image: UIImage
-    let removeAction: (UIImage) -> Void
-
-    // MARK: Init
-
-    init(image: UIImage, removeAction: @escaping (UIImage) -> Void) {
-        self.image = image
-        self.removeAction = removeAction
-    }
+	var displayMode: DisplayMode {
+		if viewModel.photos[image] != nil {
+			return .showSourcePhotos
+		} else {
+			return .showCroppedPhotos
+		}
+	}
 
     // MARK: - Body
 
@@ -31,19 +30,11 @@ struct Photo: View {
             Button {
                 showPhotosSlider.toggle()
             } label: {
-                Image(uiImage: image.downscale() ?? UIImage())
+                Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
             }.sheet(isPresented: $showPhotosSlider) {
-                PhotosSliderView()
-            }
-
-            Button {
-                removeAction(image)
-            } label: {
-                Images.removeImage.getImage()
-                    .foregroundColor(.gray)
-                    .padding([.top, .trailing], removeImagePadding)
+                PhotosSliderView(displayMode: displayMode)
             }
         }
     }
@@ -53,6 +44,7 @@ struct Photo: View {
 
 struct Photo_Previews: PreviewProvider {
     static var previews: some View {
-        Photo(image: UIImage(named: Images.magic.rawValue) ?? UIImage()) { _ in }
+        Photo(image: UIImage(named: Images.magic.rawValue) ?? UIImage())
+			.environmentObject(ViewModel())
     }
 }

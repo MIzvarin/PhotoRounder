@@ -25,17 +25,12 @@ struct PhotosListView: View {
             } else {
                 ScrollView(.vertical, showsIndicators: true) {
                     let gridItems = Array(repeating: GridItem(spacing: Constants.spacing), count: columnCount)
-                    let photos = displayMode == .showSourcePhotos ? Array(viewModel.photos.keys)
+					let photos = displayMode == .showSourcePhotos ? Array(viewModel.photos.keys)
                     : Array(viewModel.photos.values)
 
                     LazyVGrid(columns: gridItems, spacing: Constants.spacing) {
                         ForEach(photos, id: \.self) { photo in
-                            Photo(image: photo, removeAction: { image in
-                                // Removal animation
-                                withAnimation(.easeInOut(duration: 0.5)) {
-                                    viewModel.removePhoto(image)
-                                }
-                            })
+                            Photo(image: photo)
                         }
                     }
                 }.padding([.leading, .trailing], Constants.spacing)
@@ -57,11 +52,4 @@ fileprivate extension PhotosListView {
         static let columnsCount = 3
         static let spacing: CGFloat = 2
     }
-}
-
-// MARK: - DisplayMode
-
-enum DisplayMode {
-    case showSourcePhotos
-    case showCroppedPhotos
 }

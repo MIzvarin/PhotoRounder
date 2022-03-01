@@ -66,7 +66,7 @@ struct SelectPhotosView: View {
                         }
                 }.padding([.top], Constants.topPadding)
                 // Progressive view
-                ProgressView(Constants.progressMessage)
+                ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: Colors.main.getColor()))
                     .scaleEffect(Constants.progressViewScaleEffect)
                     .hidden(!isPhotosHandling)
@@ -123,6 +123,5 @@ fileprivate extension SelectPhotosView {
         static let topPadding: CGFloat = 2
         static let selectionLimit = 60
         static let progressViewScaleEffect: CGFloat = 2
-        static let progressMessage = "Please wait..."
     }
 }

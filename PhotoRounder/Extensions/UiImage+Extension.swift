@@ -8,14 +8,14 @@
 import UIKit
 
 extension UIImage {
-    func downscale() -> UIImage? {
+	func downsample(to targetSize: CGSize) -> UIImage? {
         guard
             let imageData = self.pngData(),
             let cgImageSource = CGImageSourceCreateWithData(imageData as CFData, nil)
         else { return nil }
 
         // Calculate the desired dimension
-        let maxDimensionInPixels = max(size.width, size.height)
+		let maxDimensionInPixels = max(targetSize.width, targetSize.height)
 
         // Perform downsampling
         let downsampleOptions = [
@@ -32,4 +32,8 @@ extension UIImage {
         // Return the downsampled image as UIImage
         return UIImage(cgImage: downsampledImage)
     }
+	
+	func isLandscape() -> Bool {
+		size.width > size.height
+	}
 }
