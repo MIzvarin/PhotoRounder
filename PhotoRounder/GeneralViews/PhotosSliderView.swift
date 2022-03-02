@@ -13,15 +13,27 @@ struct PhotosSliderView: View {
 	@State var selectedImage: UIImage
 	let displayMode: DisplayMode
 	
+	@State private var imageEditorIsPresented = false
+	
 	var body: some View {
 		let photos = getPhotosList()
 		
 		TabView(selection: $selectedImage) {
 			ForEach(photos, id: \.self) { photo in
-				Image(uiImage: photo)
-					.resizable()
-					.scaledToFit()
+				HStack {
+					Image(uiImage: photo)
+						.resizable()
+						.scaledToFit()
+				}.frame(maxWidth: .infinity, maxHeight: .infinity)
 					.tag(photo)
+					.overlay(
+						ManualCroppingButton(action: {
+							imageEditorIsPresented.toggle()
+						}).fullScreenCover(isPresented: $imageEditorIsPresented, content: {
+							ImageEditor(image: $selectedImage, isShowing: $imageEditorIsPresented)
+						})
+							.padding(),
+						alignment: .bottomLeading)
 			}
 		}.tabViewStyle(PageTabViewStyle())
 	}

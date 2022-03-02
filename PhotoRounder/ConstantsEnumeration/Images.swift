@@ -15,6 +15,7 @@ enum Images: String {
     case photo = "photo"
     case plus = "plus"
     case backButton = "arrow.left"
+	case scissors = "scissors.circle"
 
     func getImage() -> Image {
         switch self {
