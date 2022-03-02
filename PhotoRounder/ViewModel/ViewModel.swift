@@ -30,16 +30,23 @@ final class ViewModel: ObservableObject {
     func removePhoto(_ photo: UIImage) {
         photos.removeValue(forKey: photo)
     }
+	
+	func saveCropppedPhoto(for sourcePhoto: UIImage, croppedPhoto: UIImage) {
+		let rect = CGRect(origin: .zero, size: croppedPhoto.size)
+		photos[sourcePhoto] = roundPhoto(sourcePhoto: croppedPhoto, faceRect: rect)
+	}
 
-    func croppPhotos(completionHandler: @escaping () -> Void) {
+    func autoCroppPhotos(completionHandler: @escaping () -> Void) {
         let dispatchGroup = DispatchGroup()
         let queue = DispatchQueue.global(qos: .utility)
         var tmpPhotos: [UIImage: UIImage] = [:]
 
         queue.async(group: dispatchGroup) { [weak self] in
-            self?.photos.keys.forEach { photo in
+			guard let self = self else { return }
+			
+            self.photos.keys.forEach { photo in
                 dispatchGroup.enter()
-                self?.photoHandler(on: photo) { croppedPhoto in
+                self.photoHandler(on: photo) { croppedPhoto in
                     tmpPhotos[photo] = croppedPhoto
                     dispatchGroup.leave()
                 }
@@ -51,7 +58,7 @@ final class ViewModel: ObservableObject {
             }
         }
     }
-
+	
     // MARK: - Private functions
 
     private func photoHandler(on photo: UIImage, completionHandler: @escaping (UIImage) -> Void) {
@@ -77,20 +84,20 @@ final class ViewModel: ObservableObject {
         let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
         try? handler.perform([request])
 
-        let croppedImage = croppPhoto(sourcePhoto: photo, faceRect: detectedFaceRect)
+		let squareForCropp = getSquareForCropping(sourceImage: photo, faceRect: detectedFaceRect)
+        let croppedImage = roundPhoto(sourcePhoto: photo, faceRect: squareForCropp)
         completionHandler(croppedImage)
     }
 
-    private func croppPhoto(sourcePhoto: UIImage, faceRect: CGRect) -> UIImage {
-        let cropSquare = getSquareForCropping(sourceImage: sourcePhoto, faceRect: faceRect)
-        let renderer = UIGraphicsImageRenderer(size: cropSquare.size)
+    private func roundPhoto(sourcePhoto: UIImage, faceRect: CGRect) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: faceRect.size)
 
         let circleCroppedImage = renderer.image { _ in
-            let drawRect = CGRect(origin: .zero, size: cropSquare.size)
+            let drawRect = CGRect(origin: .zero, size: faceRect.size)
             let circle = UIBezierPath(ovalIn: drawRect)
             circle.addClip()
 
-            if let cgImage = sourcePhoto.cgImage?.cropping(to: cropSquare) {
+            if let cgImage = sourcePhoto.cgImage?.cropping(to: faceRect) {
                 UIImage(
                     cgImage: cgImage,
                     scale: sourcePhoto.scale,

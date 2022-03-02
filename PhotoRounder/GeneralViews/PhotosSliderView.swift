@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct PhotosSliderView: View {
+	
 	// MARK: - Public properies
 	@EnvironmentObject var viewModel: ViewModel
 	@State var selectedImage: UIImage
 	let displayMode: DisplayMode
+	var sourceImage: UIImage? {
+		viewModel.photos.searchKey(for: selectedImage)
+	}
 	
+	// MARK: - Private properties
 	@State private var imageEditorIsPresented = false
 	
+	
+	// MARK: - Body
 	var body: some View {
 		let photos = getPhotosList()
 		
@@ -30,7 +37,7 @@ struct PhotosSliderView: View {
 						ManualCroppingButton(action: {
 							imageEditorIsPresented.toggle()
 						}).fullScreenCover(isPresented: $imageEditorIsPresented, content: {
-							ImageEditor(image: $selectedImage, isShowing: $imageEditorIsPresented)
+							ImageEditorView(image: sourceImage ?? UIImage())
 						})
 							.padding(),
 						alignment: .bottomLeading)

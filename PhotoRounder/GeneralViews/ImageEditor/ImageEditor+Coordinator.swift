@@ -8,38 +8,30 @@
 import Mantis
 import SwiftUI
 
-extension ImageEditor {
+extension ImageEditorView {
 	
 	class ImageEditorCoordinator: CropViewControllerDelegate {
-		@Binding var image: UIImage
-		@Binding var isShowing: Bool
 		
-		init(image: Binding<UIImage>, isShowing: Binding<Bool>) {
-			_image = image
-			_isShowing = isShowing
+		let parent: ImageEditorView
+		
+		init(_ parent: ImageEditorView) {
+			self.parent = parent
 		}
 		
 		func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo) {
-			image = cropped
-			isShowing = false
+			parent.saveCroppedPhoto(cropped)
 		}
+		
+		func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
+			parent.presentationMode.wrappedValue.dismiss()
+		}
+		
+		func cropViewControllerDidBeginResize(_ cropViewController: CropViewController) { }
+		
+		func cropViewControllerDidEndResize(_ cropViewController: CropViewController, original: UIImage, cropInfo: CropInfo) { }
 		
 		func cropViewControllerDidFailToCrop(_ cropViewController: CropViewController, original: UIImage) {
 			
 		}
-		
-		func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
-			isShowing = false
-		}
-		
-		func cropViewControllerDidBeginResize(_ cropViewController: CropViewController) {
-			
-		}
-		
-		func cropViewControllerDidEndResize(_ cropViewController: CropViewController, original: UIImage, cropInfo: CropInfo) {
-			
-		}
-		
-		
 	}
 }

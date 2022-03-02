@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B43DDFD27CF722F0081CFEE /* ImageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43DDFC27CF722F0081CFEE /* ImageEditor.swift */; };
+		4B43DDFD27CF722F0081CFEE /* ImageEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43DDFC27CF722F0081CFEE /* ImageEditorView.swift */; };
 		4B725D9427CF588B0010FE48 /* ManualCroppingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B725D9327CF588B0010FE48 /* ManualCroppingButton.swift */; };
 		4BA5B44F27CF79EC00B59ED6 /* ImageEditor+Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5B44E27CF79EC00B59ED6 /* ImageEditor+Coordinator.swift */; };
 		4BAC52BA27BFB888006571E8 /* CGRect+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAC52B927BFB888006571E8 /* CGRect+Extension.swift */; };
@@ -26,6 +26,7 @@
 		4BD2056B27B50976002A95C7 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2056A27B50976002A95C7 /* Images.swift */; };
 		4BD2057327B54C84002A95C7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2057227B54C84002A95C7 /* ViewModel.swift */; };
 		4BD2057527B63F88002A95C7 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2057427B63F88002A95C7 /* Photo.swift */; };
+		4BE13AFB27CFA8F5000A90C8 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE13AFA27CFA8F5000A90C8 /* Dictionary+Extension.swift */; };
 		8ECBB22468C531DB774CB8C4 /* Pods_PhotoRounder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F86FF593EB064774C27F53C0 /* Pods_PhotoRounder.framework */; };
 		90426EE717441C5F493DF29E /* Pods_PhotoRounderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B1D88F1F53474EA014D33 /* Pods_PhotoRounderTests.framework */; };
 		CAC544673D1EFFD595BC7A7C /* Pods_PhotoRounder_PhotoRounderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9337B20AF6A9F68D11E156B /* Pods_PhotoRounder_PhotoRounderUITests.framework */; };
@@ -59,7 +60,7 @@
 		303B1D88F1F53474EA014D33 /* Pods_PhotoRounderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoRounderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44009A147E71BEE904CAC621 /* Pods-PhotoRounderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoRounderTests.release.xcconfig"; path = "Target Support Files/Pods-PhotoRounderTests/Pods-PhotoRounderTests.release.xcconfig"; sourceTree = "<group>"; };
 		478549C81476A73D74D66F43 /* Pods-PhotoRounderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoRounderTests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoRounderTests/Pods-PhotoRounderTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4B43DDFC27CF722F0081CFEE /* ImageEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditor.swift; sourceTree = "<group>"; };
+		4B43DDFC27CF722F0081CFEE /* ImageEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditorView.swift; sourceTree = "<group>"; };
 		4B725D9327CF588B0010FE48 /* ManualCroppingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCroppingButton.swift; sourceTree = "<group>"; };
 		4BA5B44E27CF79EC00B59ED6 /* ImageEditor+Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageEditor+Coordinator.swift"; sourceTree = "<group>"; };
 		4BAC52B927BFB888006571E8 /* CGRect+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		4BD2056A27B50976002A95C7 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		4BD2057227B54C84002A95C7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4BD2057427B63F88002A95C7 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		4BE13AFA27CFA8F5000A90C8 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		7100F76F725AB3137630BD42 /* Pods-PhotoRounder-PhotoRounderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoRounder-PhotoRounderUITests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoRounder-PhotoRounderUITests/Pods-PhotoRounder-PhotoRounderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A9337B20AF6A9F68D11E156B /* Pods_PhotoRounder_PhotoRounderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoRounder_PhotoRounderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D261B185C6945BD1ED622585 /* Pods-PhotoRounder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoRounder.release.xcconfig"; path = "Target Support Files/Pods-PhotoRounder/Pods-PhotoRounder.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,7 +125,7 @@
 		4B43DDFB27CF70AA0081CFEE /* ImageEditor */ = {
 			isa = PBXGroup;
 			children = (
-				4B43DDFC27CF722F0081CFEE /* ImageEditor.swift */,
+				4B43DDFC27CF722F0081CFEE /* ImageEditorView.swift */,
 				4BA5B44E27CF79EC00B59ED6 /* ImageEditor+Coordinator.swift */,
 			);
 			path = ImageEditor;
@@ -135,6 +137,7 @@
 				4BAC52B927BFB888006571E8 /* CGRect+Extension.swift */,
 				FAB8F70D27C3A6B900BE7C55 /* View+Extension.swift */,
 				FA08DFED27CCF5A600AB8784 /* UiImage+Extension.swift */,
+				4BE13AFA27CFA8F5000A90C8 /* Dictionary+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -568,12 +571,13 @@
 				FA08DFEE27CCF5A600AB8784 /* UiImage+Extension.swift in Sources */,
 				4BD2055E27B4E5D4002A95C7 /* SelectPhotosView.swift in Sources */,
 				4BD2056027B4E950002A95C7 /* Labels.swift in Sources */,
-				4B43DDFD27CF722F0081CFEE /* ImageEditor.swift in Sources */,
+				4B43DDFD27CF722F0081CFEE /* ImageEditorView.swift in Sources */,
 				4BAC52BA27BFB888006571E8 /* CGRect+Extension.swift in Sources */,
 				FAB8F70E27C3A6B900BE7C55 /* View+Extension.swift in Sources */,
 				FA9ED63027C8FF810028C475 /* CroppedPhotos.swift in Sources */,
 				4BD2057327B54C84002A95C7 /* ViewModel.swift in Sources */,
 				4B725D9427CF588B0010FE48 /* ManualCroppingButton.swift in Sources */,
+				4BE13AFB27CFA8F5000A90C8 /* Dictionary+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

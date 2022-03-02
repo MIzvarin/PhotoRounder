@@ -46,7 +46,7 @@ struct SelectPhotosView: View {
                     // Auto handling photos button
                     Button {
                         isPhotosHandling.toggle()
-                        viewModel.croppPhotos {
+                        viewModel.autoCroppPhotos {
                             showCroppedPhotos.toggle()
                             isPhotosHandling.toggle()
                         }

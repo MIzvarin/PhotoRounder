@@ -8,17 +8,20 @@
 import SwiftUI
 import Mantis
 
-struct ImageEditor: UIViewControllerRepresentable {
+struct ImageEditorView: UIViewControllerRepresentable {
 	typealias Coordinator = ImageEditorCoordinator
 	
-	@Binding var image: UIImage
-	@Binding var isShowing: Bool
+	@EnvironmentObject var viewModel: ViewModel
+	@Environment(\.presentationMode) var presentationMode
+	let image: UIImage
+	
+	// MARK: - UIViewControllerRepresentable
 	
 	func makeCoordinator() -> Coordinator {
-		return ImageEditorCoordinator(image: $image, isShowing: $isShowing)
+		ImageEditorCoordinator(self)
 	}
 	
-	func makeUIViewController(context: UIViewControllerRepresentableContext<ImageEditor>) -> Mantis.CropViewController {
+	func makeUIViewController(context: UIViewControllerRepresentableContext<ImageEditorView>) -> Mantis.CropViewController {
 		let editor = Mantis.cropViewController(image: image)
 		editor.config.cropShapeType = .circle(maskOnly: true)
 		editor.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 1.0 / 1.0)
@@ -27,4 +30,11 @@ struct ImageEditor: UIViewControllerRepresentable {
 	}
 	
 	func updateUIViewController(_ uiViewController: CropViewController, context: Context) {}
+	
+	// MARK: - Private functions
+	
+	func saveCroppedPhoto(_ croppedPhoto: UIImage) {
+		viewModel.saveCropppedPhoto(for: image, croppedPhoto: croppedPhoto)
+		presentationMode.wrappedValue.dismiss()
+	}
 }
