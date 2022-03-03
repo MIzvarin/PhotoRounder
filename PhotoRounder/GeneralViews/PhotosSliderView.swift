@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PhotosSliderView: View {
-	
 	// MARK: - Public properies
 	@EnvironmentObject var viewModel: ViewModel
 	@State var selectedImage: UIImage
@@ -16,10 +15,12 @@ struct PhotosSliderView: View {
 	var sourceImage: UIImage? {
 		viewModel.photos.searchKey(for: selectedImage)
 	}
+	var manualHandlingIsAvailable: Bool {
+		displayMode == .showSourcePhotos
+	}
 	
 	// MARK: - Private properties
 	@State private var imageEditorIsPresented = false
-	
 	
 	// MARK: - Body
 	var body: some View {
@@ -39,7 +40,8 @@ struct PhotosSliderView: View {
 						}).fullScreenCover(isPresented: $imageEditorIsPresented, content: {
 							ImageEditorView(image: sourceImage ?? UIImage())
 						})
-							.padding(),
+							.padding()
+							.hidden(manualHandlingIsAvailable),
 						alignment: .bottomLeading)
 			}
 		}.tabViewStyle(PageTabViewStyle())

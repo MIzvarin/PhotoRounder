@@ -11,12 +11,12 @@ import Mantis
 struct ImageEditorView: UIViewControllerRepresentable {
 	typealias Coordinator = ImageEditorCoordinator
 	
+	// MARK: - Public properties
 	@EnvironmentObject var viewModel: ViewModel
 	@Environment(\.presentationMode) var presentationMode
 	let image: UIImage
 	
 	// MARK: - UIViewControllerRepresentable
-	
 	func makeCoordinator() -> Coordinator {
 		ImageEditorCoordinator(self)
 	}
@@ -32,7 +32,6 @@ struct ImageEditorView: UIViewControllerRepresentable {
 	func updateUIViewController(_ uiViewController: CropViewController, context: Context) {}
 	
 	// MARK: - Private functions
-	
 	func saveCroppedPhoto(_ croppedPhoto: UIImage) {
 		viewModel.saveCropppedPhoto(for: image, croppedPhoto: croppedPhoto)
 		presentationMode.wrappedValue.dismiss()

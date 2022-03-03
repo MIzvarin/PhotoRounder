@@ -17,7 +17,6 @@ extension CGRect {
             x: center.x - size.width / 2,
             y: center.y - size.height / 2,
             width: size.width,
-            height: size.height
-        )
+            height: size.height)
 	}
 }

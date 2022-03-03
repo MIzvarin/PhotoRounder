@@ -24,7 +24,6 @@ struct Photo: View {
 	}
 
     // MARK: - Body
-
     var body: some View {
         ZStack(alignment: .topTrailing) {
             Button {
@@ -41,7 +40,6 @@ struct Photo: View {
 }
 
 // MARK: - Preview
-
 struct Photo_Previews: PreviewProvider {
     static var previews: some View {
         Photo(image: UIImage(named: Images.magic.rawValue) ?? UIImage())

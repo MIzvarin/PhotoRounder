@@ -9,12 +9,10 @@ import SwiftUI
 
 struct PhotosListView: View {
     // MARK: - Public properties
-
     @EnvironmentObject var viewModel: ViewModel
     let displayMode: DisplayMode
 
     // MARK: - Body
-
     var body: some View {
         VStack {
             let columnCount = calculateColumnsNumber()
@@ -39,14 +37,12 @@ struct PhotosListView: View {
     }
 
     // MARK: - Private functions
-
     private func calculateColumnsNumber() -> Int {
         viewModel.photos.count < Constants.columnsCount  ? viewModel.photos.count : Constants.columnsCount
     }
 }
 
 // MARK: - Extensions
-
 fileprivate extension PhotosListView {
     enum Constants {
         static let columnsCount = 3

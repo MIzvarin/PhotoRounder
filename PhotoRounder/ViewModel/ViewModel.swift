@@ -11,13 +11,11 @@ import Vision
 
 final class ViewModel: ObservableObject {
     // MARK: Public properties
-
     /// key - source image
     /// value - cropped image
     @Published private(set) var photos: [UIImage: UIImage] = [:]
 
     // MARK: - Public functions
-
     func downloadPhotos(_ selectedPhotos: [UIImage]) {
 		var tmpPhotos: [UIImage: UIImage] = [:]
 		let targetSize = CGSize(width: 768, height: 1024)
@@ -60,7 +58,6 @@ final class ViewModel: ObservableObject {
     }
 	
     // MARK: - Private functions
-
     private func photoHandler(on photo: UIImage, completionHandler: @escaping (UIImage) -> Void) {
         guard let cgImage = photo.cgImage else { return }
         lazy var detectedFaceRect = CGRect()

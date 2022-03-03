@@ -10,11 +10,9 @@ import SwiftUI
 
 struct SelectPhotosView: View {
     // MARK: - Public properties
-
     @EnvironmentObject var viewModel: ViewModel
 
     // MARK: - Private properties
-
     @State private var showPhotoLibrary = false
     @State private var isPhotosHandling = false
     @State private var showCroppedPhotos = false
@@ -29,13 +27,11 @@ struct SelectPhotosView: View {
     }
 
     // MARK: - Init
-
     init() {
         setupNavBarAppearance()
     }
 
     // MARK: - Body
-
     var body: some View {
         NavigationView {
             ZStack {
@@ -92,7 +88,6 @@ struct SelectPhotosView: View {
     }
 
     // MARK: - Private functions
-
     private func setupNavBarAppearance() {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -105,7 +100,6 @@ struct SelectPhotosView: View {
 }
 
 // MARK: - Preview
-
 struct SelectPhotosView_Previews: PreviewProvider {
     static var previews: some View {
         SelectPhotosView()
@@ -114,10 +108,8 @@ struct SelectPhotosView_Previews: PreviewProvider {
 }
 
 // MARK: - Extensions
-
 fileprivate extension SelectPhotosView {
     // MARK: - Constant enumeration
-
     enum Constants {
         static let imageSize: CGFloat = 20
         static let topPadding: CGFloat = 2

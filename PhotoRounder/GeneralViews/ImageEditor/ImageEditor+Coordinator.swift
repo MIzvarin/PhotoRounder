@@ -9,15 +9,18 @@ import Mantis
 import SwiftUI
 
 extension ImageEditorView {
-	
+	// MARK: - Image editor coordinator
 	class ImageEditorCoordinator: CropViewControllerDelegate {
 		
+		// MARK: - Public properties
 		let parent: ImageEditorView
 		
+		// MARK: - Init
 		init(_ parent: ImageEditorView) {
 			self.parent = parent
 		}
 		
+		// MARK: - CropViewControllerDelegate
 		func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo) {
 			parent.saveCroppedPhoto(cropped)
 		}

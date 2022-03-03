@@ -9,15 +9,12 @@ import SwiftUI
 
 struct ManualCroppingButton: View {
 	// MARK: - Public properties
-	
 	let action: () -> Void
 	
 	// MARK: - Private properties
-	
 	private let imageSize: CGFloat = 35
 	
 	// MARK: - Body
-	
     var body: some View {
 		Button {
 			action()

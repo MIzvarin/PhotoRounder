@@ -9,12 +9,10 @@ import SwiftUI
 
 struct CroppedPhotos: View {
     // MARK: - Public properties
-
     @EnvironmentObject var viewModel: ViewModel
     @Environment(\.presentationMode) var presentationMode
 
     // MARK: - Init
-
     init() {
         setupNavBarAppearance()
     }
@@ -36,7 +34,6 @@ struct CroppedPhotos: View {
     }
 
     // MARK: - Private functions
-
     private func setupNavBarAppearance() {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]

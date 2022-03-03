@@ -12,11 +12,9 @@ extension ImagePickerView {
 
     class Coordinator: PHPickerViewControllerDelegate {
         // MARK: - Static properties
-
         let parent: ImagePickerView
 
         // MARK: - Init
-
         init(_ parent: ImagePickerView) {
             self.parent = parent
         }
@@ -26,7 +24,6 @@ extension ImagePickerView {
         }
 
         // MARK: - PHPickerViewController delegate
-
         func picker(_: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             self.parent.startingHandler()
             let dispatchGroup = DispatchGroup()
