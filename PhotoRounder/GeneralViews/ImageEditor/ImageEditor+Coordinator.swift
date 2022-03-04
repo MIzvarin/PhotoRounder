@@ -10,7 +10,7 @@ import SwiftUI
 
 extension ImageEditorView {
 	// MARK: - Image editor coordinator
-	class ImageEditorCoordinator: CropViewControllerDelegate {
+	final class ImageEditorCoordinator: CropViewControllerDelegate {
 		
 		// MARK: - Public properties
 		let parent: ImageEditorView

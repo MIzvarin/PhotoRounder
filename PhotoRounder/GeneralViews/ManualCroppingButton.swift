@@ -15,7 +15,7 @@ struct ManualCroppingButton: View {
 	private let imageSize: CGFloat = 35
 	
 	// MARK: - Body
-    var body: some View {
+	var body: some View {
 		Button {
 			action()
 		} label: {
@@ -24,14 +24,14 @@ struct ManualCroppingButton: View {
 				.frame(width: imageSize, height: imageSize)
 				.foregroundColor(Colors.main.getColor())
 		}
-
-    }
+		
+	}
 }
 
 struct ManualCroppingButton_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		ManualCroppingButton {
 			
 		}
-    }
+	}
 }
