@@ -11,12 +11,12 @@ struct CroppedPhotos: View {
 	// MARK: - Public properties
 	@EnvironmentObject var viewModel: ViewModel
 	@Environment(\.presentationMode) var presentationMode
-	
+
 	// MARK: - Init
 	init() {
 		setupNavBarAppearance()
 	}
-	
+
 	var body: some View {
 		NavigationView {
 			PhotosListView(displayMode: .showCroppedPhotos)
@@ -32,7 +32,7 @@ struct CroppedPhotos: View {
 				}
 		}
 	}
-	
+
 	// MARK: - Private functions
 	private func setupNavBarAppearance() {
 		let navBarAppearance = UINavigationBarAppearance()

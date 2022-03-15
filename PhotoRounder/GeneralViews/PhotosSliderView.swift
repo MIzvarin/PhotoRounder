@@ -18,14 +18,14 @@ struct PhotosSliderView: View {
 	var manualHandlingIsAvailable: Bool {
 		displayMode == .showSourcePhotos
 	}
-	
+
 	// MARK: - Private properties
 	@State private var imageEditorIsPresented = false
-	
+
 	// MARK: - Body
 	var body: some View {
 		let photos = getPhotosList()
-		
+
 		TabView(selection: $selectedImage) {
 			ForEach(photos, id: \.self) { photo in
 				HStack {
@@ -46,7 +46,7 @@ struct PhotosSliderView: View {
 			}
 		}.tabViewStyle(PageTabViewStyle())
 	}
-	
+
 	// MARK: - Pivate functions
 	private func getPhotosList() -> [UIImage] {
 		if displayMode == .showSourcePhotos {

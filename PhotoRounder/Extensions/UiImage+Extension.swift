@@ -17,10 +17,10 @@ extension UIImage {
 			let imageData = self.pngData(),
 			let cgImageSource = CGImageSourceCreateWithData(imageData as CFData, nil)
 		else { return nil }
-		
+
 		// Calculate the desired dimension
 		let maxDimensionInPixels = max(targetSize.width, targetSize.height)
-		
+
 		// Perform downsampling
 		let downsampleOptions = [
 			kCGImageSourceCreateThumbnailFromImageAlways: true,
@@ -28,15 +28,15 @@ extension UIImage {
 			kCGImageSourceCreateThumbnailWithTransform: true,
 			kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels
 		] as CFDictionary
-		
+
 		guard
 			let downsampledImage = CGImageSourceCreateThumbnailAtIndex(cgImageSource, 0, downsampleOptions)
 		else { return nil }
-		
+
 		// Return the downsampled image as UIImage
 		return UIImage(cgImage: downsampledImage)
 	}
-	
+
 	func isLandscape() -> Bool {
 		size.width > size.height
 	}

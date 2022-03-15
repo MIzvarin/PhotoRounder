@@ -14,7 +14,7 @@ enum RatioType {
 }
 
 class RatioPresenter {
-    var didGetRatio: ((Double)->Void) = { _ in }
+    var didGetRatio: ((Double) -> Void) = { _ in }
     private var type: RatioType = .vertical
     private var originalRatioH: Double
     private var ratios: [RatioItemType]
@@ -27,23 +27,27 @@ class RatioPresenter {
         self.fixRatiosShowType = fixRatiosShowType
     }
 
-    private func getItemTitle(by ratio: RatioItemType)-> String {
+    private func getItemTitle(by ratio: RatioItemType) -> String {
         switch fixRatiosShowType {
         case .adaptive:
             return (type == .horizontal) ? ratio.nameH : ratio.nameV
+
         case .horizontal:
             return ratio.nameH
+
         case .vetical:
             return ratio.nameV
         }
     }
 
-    private func getItemValue(by ratio: RatioItemType)-> Double {
+    private func getItemValue(by ratio: RatioItemType) -> Double {
         switch fixRatiosShowType {
         case .adaptive:
             return (type == .horizontal) ? ratio.ratioH : ratio.ratioV
+
         case .horizontal:
             return ratio.ratioH
+
         case .vetical:
             return ratio.ratioV
         }

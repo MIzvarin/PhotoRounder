@@ -37,6 +37,7 @@ public struct DialConfig {
                 indicatorColor = .lightGray
                 numberColor = .lightGray
                 centerAxisColor = .lightGray
+
             case .light:
                 backgroundColor = .clear
                 bigScaleColor = .darkGray

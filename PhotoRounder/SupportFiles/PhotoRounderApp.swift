@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct PhotoRounderApp: App {
 	@StateObject private var viewModel = ViewModel()
-	
+
 	var body: some Scene {
 		WindowGroup {
 			SelectPhotosView()

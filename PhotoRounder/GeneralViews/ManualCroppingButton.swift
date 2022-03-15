@@ -10,10 +10,10 @@ import SwiftUI
 struct ManualCroppingButton: View {
 	// MARK: - Public properties
 	let action: () -> Void
-	
+
 	// MARK: - Private properties
 	private let imageSize: CGFloat = 35
-	
+
 	// MARK: - Body
 	var body: some View {
 		Button {
@@ -24,14 +24,12 @@ struct ManualCroppingButton: View {
 				.frame(width: imageSize, height: imageSize)
 				.foregroundColor(Colors.main.getColor())
 		}
-		
 	}
 }
 
 struct ManualCroppingButton_Previews: PreviewProvider {
 	static var previews: some View {
 		ManualCroppingButton {
-			
 		}
 	}
 }

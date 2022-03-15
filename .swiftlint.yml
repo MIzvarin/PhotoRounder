@@ -15,4 +15,7 @@ opt_in_rules:
     - vertical_whitespace_opening_braces
     - yoda_condition
 
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+
 reporter: "xcode"

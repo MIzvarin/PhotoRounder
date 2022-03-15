@@ -11,7 +11,7 @@ import SwiftUI
 struct SelectPhotosView: View {
 	// MARK: - Public properties
 	@EnvironmentObject var viewModel: ViewModel
-	
+
 	// MARK: - Private properties
 	@State private var showPhotoLibrary = false
 	@State private var isPhotosHandling = false
@@ -25,12 +25,12 @@ struct SelectPhotosView: View {
 	private var isActionButtonDisabled: Bool {
 		viewModel.photos.isEmpty || isPhotosHandling
 	}
-	
+
 	// MARK: - Init
 	init() {
 		setupNavBarAppearance()
 	}
-	
+
 	// MARK: - Body
 	var body: some View {
 		NavigationView {
@@ -53,7 +53,7 @@ struct SelectPhotosView: View {
 								.frame(width: Constants.imageSize, height: Constants.imageSize)
 							Text(Labels.magic.rawValue)
 								.foregroundColor(isActionButtonDisabled ?
-																 Colors.helperText.getColor() : Colors.magic.getColor())
+												 Colors.helperText.getColor() : Colors.magic.getColor())
 						}
 					}.padding()
 						.disabled(isActionButtonDisabled)
@@ -76,17 +76,19 @@ struct SelectPhotosView: View {
 						Images.plus.getImage()
 							.foregroundColor(.white)
 					}.sheet(isPresented: $showPhotoLibrary) {
-						ImagePickerView(configuration: pickerConfiguration) {
+						ImagePickerView(
+							configuration: pickerConfiguration,
+							startingHandler: {
 							isPhotosHandling.toggle()
-						} completionHandler: { selectedPhotos in
+						}, completionHandler: { selectedPhotos in
 							viewModel.downloadPhotos(selectedPhotos)
-							isPhotosHandling.toggle()
-						}
+														isPhotosHandling.toggle()
+						})
 					}.disabled(isPhotosHandling)
 				})
 		}.navigationViewStyle(.stack)
 	}
-	
+
 	// MARK: - Private functions
 	private func setupNavBarAppearance() {
 		let navBarAppearance = UINavigationBarAppearance()

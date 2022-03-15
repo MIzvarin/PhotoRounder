@@ -11,12 +11,12 @@ struct PhotosListView: View {
 	// MARK: - Public properties
 	@EnvironmentObject var viewModel: ViewModel
 	let displayMode: DisplayMode
-	
+
 	// MARK: - Body
 	var body: some View {
 		VStack {
 			let columnCount = calculateColumnsNumber()
-			
+
 			if viewModel.photos.isEmpty {
 				Text(Labels.noSelectedPhotos.rawValue)
 					.foregroundColor(Colors.helperText.getColor())
@@ -25,7 +25,7 @@ struct PhotosListView: View {
 					let gridItems = Array(repeating: GridItem(spacing: Constants.spacing), count: columnCount)
 					let photos = displayMode == .showSourcePhotos ? Array(viewModel.photos.keys)
 					: Array(viewModel.photos.values)
-					
+
 					LazyVGrid(columns: gridItems, spacing: Constants.spacing) {
 						ForEach(photos, id: \.self) { photo in
 							Photo(image: photo)
@@ -35,7 +35,7 @@ struct PhotosListView: View {
 			}
 		}
 	}
-	
+
 	// MARK: - Private functions
 	private func calculateColumnsNumber() -> Int {
 		viewModel.photos.count < Constants.columnsCount  ? viewModel.photos.count : Constants.columnsCount
